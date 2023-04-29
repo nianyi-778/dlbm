@@ -4,7 +4,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 class CupertinoSwiper extends StatefulWidget {
   final List<String> images;
 
-  CupertinoSwiper({required this.images});
+  const CupertinoSwiper({super.key, required this.images});
 
   @override
   _CupertinoSwiperState createState() => _CupertinoSwiperState();

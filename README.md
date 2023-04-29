@@ -24,6 +24,8 @@ flutter packages get
 
 flutter packages pub run flutter_launcher_icons:main
 
+flutter run --no-sound-null-safety -v
+
 完毕后，图标就会被icon这个源生成的各种规格和平台的图标，覆盖。
 
 https://blog.csdn.net/icewst/article/details/122841724
