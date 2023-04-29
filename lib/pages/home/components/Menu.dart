@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class Item {
   final String text;
   final String icon;
@@ -22,19 +23,19 @@ class _HomePageMenuState extends State<HomePageMenu> {
       children: [
         Expanded(
           flex: 1,
-          child:  SizedBox(
+          child: SizedBox(
             height: 100,
-            child:Column(
+            child: Column(
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: Image.network(
                       "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     )),
                 const Text(
                   '抖音水印',
-                  style:  TextStyle(fontSize: 10.0),
+                  style: TextStyle(fontSize: 10.0),
                 )
               ],
             ),
@@ -45,7 +46,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
           flex: 1,
           child: SizedBox(
             height: 100,
-            child:Column(
+            child: Column(
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
@@ -55,7 +56,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
                     )),
                 const Text(
                   '抖音水印',
-                  style:  TextStyle(fontSize: 10.0),
+                  style: TextStyle(fontSize: 10.0),
                 )
               ],
             ),
@@ -66,7 +67,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
           flex: 1,
           child: SizedBox(
             height: 100,
-            child:Column(
+            child: Column(
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
@@ -76,7 +77,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
                     )),
                 const Text(
                   '抖音水印',
-                  style:  TextStyle(fontSize: 10.0),
+                  style: TextStyle(fontSize: 10.0),
                 )
               ],
             ),
@@ -87,7 +88,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
           flex: 1,
           child: SizedBox(
             height: 100,
-            child:Column(
+            child: Column(
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
@@ -97,7 +98,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
                     )),
                 const Text(
                   '抖音水印',
-                  style:  TextStyle(fontSize: 10.0),
+                  style: TextStyle(fontSize: 10.0),
                 )
               ],
             ),
