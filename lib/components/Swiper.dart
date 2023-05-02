@@ -30,6 +30,7 @@ class _CupertinoSwiperState extends State<CupertinoSwiper> {
                   ));
             },
             autoplay: true,
+            pagination: new SwiperPagination(),
           ),
         ),
       ],

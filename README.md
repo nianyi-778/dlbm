@@ -1,4 +1,4 @@
-# flutter_app
+# dlbm
 
 A new Flutter project.
 
@@ -24,6 +24,8 @@ flutter packages get
 flutter packages pub run flutter_launcher_icons:main
 
 flutter run --no-sound-null-safety -v
+
+flutter build ios --no-sound-null-safety --release
 
 完毕后，图标就会被 icon 这个源生成的各种规格和平台的图标，覆盖。
 
