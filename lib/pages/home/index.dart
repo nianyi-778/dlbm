@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import "package:dlbm/components/Swiper.dart";
 import 'package:dlbm/components/TextField.dart';
 import 'package:dlbm/pages/home/components/Menu.dart';
+import 'package:dlbm/pages/home/components/Shopping.dart';
 import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
@@ -73,11 +74,31 @@ class _MyHomePageState extends State<HomePage> {
                       ],
                     ),
                     Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 15.0),
+                      margin: const EdgeInsets.symmetric(vertical: 15.0),
                       child: const HomePageMenu(
                         data: [],
                       ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      width: MediaQuery.of(context).size.width,
+                      child: SizedBox(
+                        height: 100.0,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
+                              fit: BoxFit.fill,
+                            )),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0,
+                        vertical: 15.0,
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                      child: const HomePageShopping(),
                     )
                   ],
                 ),

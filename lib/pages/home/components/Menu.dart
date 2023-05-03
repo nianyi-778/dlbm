@@ -21,6 +21,7 @@ class _HomePageMenuState extends State<HomePageMenu> {
     return Flex(
       direction: Axis.horizontal,
       children: [
+        const SizedBox(width: 24.0),
         Expanded(
           flex: 1,
           child: Column(
@@ -34,14 +35,17 @@ class _HomePageMenuState extends State<HomePageMenu> {
                       fit: BoxFit.cover,
                     )),
               ),
-              const Text(
-                '抖音水印',
-                style: TextStyle(fontSize: 14.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 2.0),
+                child: Text(
+                  '抖音水印',
+                  style: TextStyle(fontSize: 10.0),
+                ),
               )
             ],
           ),
         ),
-        const SizedBox(width: 20.0),
+        const SizedBox(width: 24.0),
         Expanded(
           flex: 1,
           child: Column(
@@ -55,14 +59,17 @@ class _HomePageMenuState extends State<HomePageMenu> {
                       fit: BoxFit.cover,
                     )),
               ),
-              const Text(
-                '抖音水印',
-                style: TextStyle(fontSize: 14.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 2.0),
+                child: Text(
+                  '抖音水印',
+                  style: TextStyle(fontSize: 10.0),
+                ),
               )
             ],
           ),
         ),
-        const SizedBox(width: 20.0),
+        const SizedBox(width: 24.0),
         Expanded(
           flex: 1,
           child: Column(
@@ -76,14 +83,17 @@ class _HomePageMenuState extends State<HomePageMenu> {
                       fit: BoxFit.cover,
                     )),
               ),
-              const Text(
-                '抖音水印',
-                style: TextStyle(fontSize: 14.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 2.0),
+                child: Text(
+                  '抖音水印',
+                  style: TextStyle(fontSize: 10.0),
+                ),
               )
             ],
           ),
         ),
-        const SizedBox(width: 20.0),
+        const SizedBox(width: 24.0),
         Expanded(
           flex: 1,
           child: Column(
@@ -97,14 +107,17 @@ class _HomePageMenuState extends State<HomePageMenu> {
                       fit: BoxFit.cover,
                     )),
               ),
-              const Text(
-                '抖音水印',
-                style: TextStyle(fontSize: 14.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 2.0),
+                child: Text(
+                  '抖音水印',
+                  style: TextStyle(fontSize: 10.0),
+                ),
               )
             ],
           ),
         ),
-        const SizedBox(width: 20.0),
+        const SizedBox(width: 24.0),
         Expanded(
           flex: 1,
           child: Column(
@@ -118,13 +131,17 @@ class _HomePageMenuState extends State<HomePageMenu> {
                       fit: BoxFit.cover,
                     )),
               ),
-              const Text(
-                '抖音水印',
-                style: TextStyle(fontSize: 14.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 2.0),
+                child: Text(
+                  '抖音水印',
+                  style: TextStyle(fontSize: 10.0),
+                ),
               )
             ],
           ),
         ),
+        const SizedBox(width: 24.0),
       ],
     );
   }
