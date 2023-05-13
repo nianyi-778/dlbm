@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
 class CupertinoSwiper extends StatefulWidget {
   final List<String> images;
