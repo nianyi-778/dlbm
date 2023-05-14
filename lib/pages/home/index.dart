@@ -4,13 +4,9 @@ import 'package:dlbm/components/TextField.dart';
 import 'package:dlbm/pages/home/components/Menu.dart';
 import 'package:dlbm/pages/home/components/Shopping.dart';
 import 'package:flutter/services.dart';
-// import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
-  // const HomePage({super.key, required this.title});
   const HomePage({super.key});
-
-  // final String title;
 
   @override
   State<HomePage> createState() => _MyHomePageState();
