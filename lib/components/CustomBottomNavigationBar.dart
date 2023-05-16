@@ -4,10 +4,10 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 typedef GetIndexCallback = void Function(int index);
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  int defaultCurrentIndex = 0;
+  int currentIndex = 0;
   final GetIndexCallback onTap;
   CustomBottomNavigationBar(
-      {super.key, this.defaultCurrentIndex = 0, required this.onTap});
+      {super.key, this.currentIndex = 0, required this.onTap});
 
   @override
   _BottomNavigationBarState createState() => _BottomNavigationBarState();
@@ -17,10 +17,9 @@ class _BottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return SalomonBottomBar(
-      currentIndex: widget.defaultCurrentIndex,
+      currentIndex: widget.currentIndex,
       onTap: (i) {
         widget.onTap(i);
-        setState(() => widget.defaultCurrentIndex = i);
       },
       items: [
         /// Home

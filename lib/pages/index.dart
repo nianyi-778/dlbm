@@ -1,31 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:dlbm/components/CustomBottomNavigationBar.dart';
 
-class MainPage extends StatelessWidget {
+import 'package:dlbm/pages/home/index.dart';
+import 'package:dlbm/pages/my/index.dart';
+import 'package:dlbm/pages/shopping/index.dart';
+import 'package:dlbm/pages/toolbox/index.dart';
+
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  int currentIndex = 0;
   onTap(index) {
-    print(index);
+    setState(() => currentIndex = index);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(onTap: onTap),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'This is the detail page.',
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Go back'),
-            ),
-          ],
-        ),
+      bottomNavigationBar:
+          CustomBottomNavigationBar(onTap: onTap, currentIndex: currentIndex),
+      body: IndexedStack(
+        index: currentIndex,
+        children: const [
+          HomePage(),
+          Shopping(),
+          Toolbox(),
+          MyApp(),
+        ],
       ),
     );
   }
