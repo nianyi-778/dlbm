@@ -37,6 +37,7 @@ dependencies:
   flutter_swiper_view: ^1.1.8
   fluid_bottom_nav_bar: ^1.4.0
   salomon_bottom_bar: ^3.3.2
+  flutter_native_splash: ^2.2.19
 
 dev_dependencies:
   flutter_test:
