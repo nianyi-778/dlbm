@@ -1,23 +1,77 @@
 {
-  "images" : [
-    {
-      "idiom" : "universal",
-      "filename" : "LaunchImage.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "LaunchImage@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "LaunchImage@3x.png",
-      "scale" : "3x"
-    }
-  ],
-  "info" : {
-    "version" : 1,
-    "author" : "xcode"
-  }
+	"images": [
+		{
+			"extent": "full-screen",
+			"idiom": "iphone",
+			"filename": "Default@2x~iphone.png",
+			"orientation": "portrait",
+			"minimum-system-version": "7.0",
+			"scale": "2x"
+		},
+		{
+			"extent": "full-screen",
+			"idiom": "iphone",
+			"filename": "Default~iphone.png",
+			"orientation": "portrait",
+			"scale": "1x"
+		},
+		{
+			"extent": "full-screen",
+			"idiom": "iphone",
+			"filename": "Default-568h@2x~iphone.png",
+			"orientation": "portrait",
+			"subtype": "retina4",
+			"minimum-system-version": "7.0",
+			"scale": "2x"
+		},
+		{
+			"extent": "full-screen",
+			"idiom": "iphone",
+			"filename": "Default-667h.png",
+			"orientation": "portrait",
+			"subtype": "667h",
+			"minimum-system-version": "8.0",
+			"scale": "2x"
+		},
+		{
+			"extent": "full-screen",
+			"idiom": "iphone",
+			"filename": "Default-736h.png",
+			"orientation": "portrait",
+			"subtype": "736h",
+			"minimum-system-version": "8.0",
+			"scale": "3x"
+		},
+		{
+			"extent": "full-screen",
+			"idiom": "iphone",
+			"filename": "Default-1792h.png",
+			"orientation": "portrait",
+			"subtype": "1792h",
+			"minimum-system-version": "12.0",
+			"scale": "2x"
+		},
+		{
+			"extent": "full-screen",
+			"idiom": "iphone",
+			"filename": "Default-2436h.png",
+			"orientation": "portrait",
+			"subtype": "2436h",
+			"minimum-system-version": "11.0",
+			"scale": "3x"
+		},
+		{
+			"extent": "full-screen",
+			"idiom": "iphone",
+			"subtype": "2688h",
+			"filename": "Default-2688h",
+			"minimum-system-version": "12.0",
+			"orientation": "portrait",
+			"scale": "3x"
+		}
+	],
+	"info": {
+		"version": 1,
+		"author": "http://www.onlinedo.com"
+	}
 }
