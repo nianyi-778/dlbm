@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:dlbm/pages/home/components/ShoppingItem.dart';
 
-class HomePageShopping extends StatefulWidget {
-  const HomePageShopping({super.key});
+class ShoppingItem extends StatefulWidget {
+  const ShoppingItem({super.key});
   @override
   _HomePageShoppingState createState() => _HomePageShoppingState();
 }
 
-class _HomePageShoppingState extends State<HomePageShopping> {
+class _HomePageShoppingState extends State<ShoppingItem> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,11 +25,6 @@ class _HomePageShoppingState extends State<HomePageShopping> {
             )
           ],
         ),
-        Column(
-          children: List.generate(10, (index) {
-            return const ShoppingItem();
-          }),
-        )
       ],
     );
   }

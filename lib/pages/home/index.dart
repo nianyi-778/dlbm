@@ -20,56 +20,62 @@ class _MyHomePageState extends State<HomePage> {
           elevation: 0, //去除状态栏下的一条阴影
           toolbarHeight: 0,
           systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
+            statusBarColor: Colors.blue,
           ),
         ), // 隐藏了app Bar
         body: SafeArea(
-          child: Stack(
-            children: <Widget>[
-              Positioned(
-                // banner 下面铺的底色
-                top: 0,
-                right: 0,
-                left: 0,
+            child: Container(
+          constraints: const BoxConstraints.expand(),
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Container(
+                color: Colors.blue,
                 child: Container(
-                  height: 240,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.blue.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.white,
                   ),
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 15.0, horizontal: 10.0),
+                  child: MyTextField(),
                 ),
               ),
-              Container(
-                constraints: const BoxConstraints.expand(),
-                width: MediaQuery.of(context).size.width,
-                child: Column(
+              Expanded(
+                child: ListView(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white,
+                    Stack(children: <Widget>[
+                      Positioned(
+                        // banner 下面铺的底色
+                        top: 0,
+                        right: 0,
+                        left: 0,
+                        child: Container(
+                          height: 160,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.blue.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 15.0, horizontal: 10.0),
-                      child: MyTextField(),
-                    ),
-                    const CupertinoSwiper(
-                      images: [
-                        "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
-                        "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
-                        "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
-                        "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
-                        "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
-                        "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
-                      ],
-                    ),
+                      const CupertinoSwiper(
+                        images: [
+                          "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
+                          "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
+                          "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
+                          "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
+                          "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
+                          "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
+                        ],
+                      ),
+                    ]),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 15.0),
                       child: const HomePageMenu(
@@ -99,9 +105,9 @@ class _MyHomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
-        ));
+        )));
   }
 }
