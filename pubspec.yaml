@@ -68,7 +68,7 @@ flutter:
 flutter_native_splash:
   image: assets/launchBackground.png
   color: "#16a0e1"
-  fill: true
+  fill: false
   android: true
   ios: true
 

@@ -26,10 +26,27 @@ class _HomePageShoppingState extends State<HomePageShopping> {
             )
           ],
         ),
-        Column(
-          children: List.generate(10, (index) {
-            return const ShoppingItem();
-          }),
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 15.0),
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              childAspectRatio: 1.5,
+            ),
+            itemBuilder: (BuildContext context, int index) {
+              return ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Container(
+                    color: Colors.grey[200],
+                    child: const ShoppingItem(),
+                  ));
+            },
+            itemCount: 10,
+          ),
         )
       ],
     );

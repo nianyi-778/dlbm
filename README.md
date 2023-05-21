@@ -40,6 +40,5 @@ open -a Simulator
 <!-- logo -->
 
 ```
-flutter pub run flutter_native_splash:create  // ios
-flutter pub run flutter_native_splash:create -f  // android
+flutter pub run flutter_native_splash:create  // ios android
 ```
