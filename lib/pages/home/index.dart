@@ -16,9 +16,11 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.9),
         appBar: AppBar(
           elevation: 0, //去除状态栏下的一条阴影
           toolbarHeight: 0,
+          backgroundColor: Colors.transparent,
           systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.blue,
           ),

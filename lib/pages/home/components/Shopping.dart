@@ -41,7 +41,7 @@ class _HomePageShoppingState extends State<HomePageShopping> {
               return ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Container(
-                    color: Colors.grey[200],
+                    color: Colors.white,
                     child: const ShoppingItem(),
                   ));
             },

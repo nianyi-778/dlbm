@@ -28,8 +28,8 @@ class _MainPageState extends State<MainPage> {
         index: currentIndex,
         children: const [
           HomePage(),
-          Shopping(),
           Toolbox(),
+          Shopping(),
           MyApp(),
         ],
       ),

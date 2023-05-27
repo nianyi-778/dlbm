@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
     return const MaterialApp(
+      debugShowCheckedModeBanner: false, // 隐藏debug标记
       onGenerateRoute: RouteConfiguration.generateRoute,
     );
   }

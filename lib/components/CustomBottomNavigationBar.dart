@@ -24,29 +24,29 @@ class _BottomNavigationBarState extends State<CustomBottomNavigationBar> {
       items: [
         /// Home
         SalomonBottomBarItem(
-          icon: Icon(Icons.home),
-          title: Text("首页"),
+          icon: const Icon(Icons.home),
+          title: const Text("首页"),
           selectedColor: Colors.purple,
         ),
 
         /// Likes
         SalomonBottomBarItem(
-          icon: Icon(Icons.work),
-          title: Text("百宝箱"),
+          icon: const Icon(Icons.work),
+          title: const Text("百宝箱"),
           selectedColor: Colors.pink,
         ),
 
         /// Search
         SalomonBottomBarItem(
-          icon: Icon(Icons.shopping_cart),
-          title: Text("优惠券"),
+          icon: const Icon(Icons.shopping_cart),
+          title: const Text("优惠券"),
           selectedColor: Colors.orange,
         ),
 
         /// Profile
         SalomonBottomBarItem(
-          icon: Icon(Icons.person),
-          title: Text("我的"),
+          icon: const Icon(Icons.person),
+          title: const Text("我的"),
           selectedColor: Colors.teal,
         ),
       ],

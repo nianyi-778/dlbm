@@ -9,72 +9,148 @@ class ShoppingItem extends StatefulWidget {
 class _HomePageShoppingState extends State<ShoppingItem> {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          flex: 1,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 70,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: Image.network(
-                      'https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24',
-                      fit: BoxFit.fill,
-                    )),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 80,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6.0),
+                        child: Image.network(
+                          'https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24',
+                          fit: BoxFit.fill,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 6,
-              ),
-              Row(
+            ),
+            const SizedBox(width: 4),
+            Expanded(
+              flex: 1,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    '券后￥',
+                children: [
+                  const Text(
+                    '雨伞双人加大男士雨伞上午哈哈哈哈雨伞双人加大男士雨伞上午哈哈哈哈雨伞双人加大男士雨伞上午哈哈哈哈',
+                    maxLines: 2,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 1, horizontal: 2),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color.fromRGBO(250, 100, 25, 1),
+                              width: 1.0,
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: const Text(
+                            '券 20元',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(250, 100, 25, 1),
+                            ),
+                          )),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 1, horizontal: 2),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color.fromRGBO(250, 100, 25, 1),
+                              width: 1.0,
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: const Text(
+                            '包邮',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(250, 100, 25, 1),
+                            ),
+                          ))
+                    ],
+                  ),
+                  const Text(
+                    '￥69.90',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        fontSize: 10,
+                        color: Color.fromRGBO(167, 160, 160, 1)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            RichText(
+              text: const TextSpan(
+                children: [
+                  TextSpan(
+                    text: '券后',
                     style: TextStyle(
                         height: 1.0,
-                        fontSize: 14,
+                        fontSize: 10,
                         color: Color.fromRGBO(250, 100, 25, 1)),
                   ),
-                  Text(
-                    '49',
+                  TextSpan(
+                    text: '￥',
+                    style: TextStyle(
+                        height: 1.0,
+                        fontSize: 10,
+                        color: Color.fromRGBO(250, 100, 25, 1)),
+                  ),
+                  TextSpan(
+                    text: '49',
                     style: TextStyle(
                         height: 1.0,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Color.fromRGBO(250, 100, 25, 1)),
                   ),
-                  Text(
-                    '.90',
+                  TextSpan(
+                    text: '.90',
                     style: TextStyle(
                         height: 1.0,
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                         color: Color.fromRGBO(250, 100, 25, 1)),
-                  )
+                  ),
                 ],
-              )
-            ],
-          ),
-        ),
-        const SizedBox(width: 4),
-        Expanded(
-          flex: 1,
-          child: Column(
-            children: const [
-              Text(
-                '雨伞双人加大男士雨伞上午哈哈哈哈雨伞双人加大男士雨伞上午哈哈哈哈雨伞双人加大男士雨伞上午哈哈哈哈',
-                maxLines: 2,
-                softWrap: true,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 12,
-                ),
-              )
-            ],
-          ),
-        ),
+              ),
+            ),
+            const Text(
+              '月销量：100+',
+              style: TextStyle(
+                  fontSize: 10, color: Color.fromRGBO(167, 160, 160, 1)),
+            )
+          ],
+        )
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyApp extends StatefulWidget {
   // const HomePage({super.key, required this.title});
@@ -15,10 +16,19 @@ class _MyHomePageState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Demo Home Page'),
+        elevation: 0, //去除状态栏下的一条阴影
+        toolbarHeight: 0,
+        title: const Text(
+          '个人中心',
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.teal,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.blue,
+        ),
       ),
       body: const Text(
-        'Welcome to Flutter',
+        'Welcome to 个人中心',
         style: TextStyle(fontSize: 24),
       ),
     );
