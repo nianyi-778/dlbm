@@ -27,7 +27,7 @@ class _HomePageShoppingState extends State<HomePageShopping> {
           ],
         ),
         Container(
-          margin: const EdgeInsets.symmetric(vertical: 15.0),
+          margin: const EdgeInsets.only(top: 5, bottom: 15),
           child: GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
