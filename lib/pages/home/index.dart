@@ -6,7 +6,7 @@ import 'package:dlbm/pages/home/components/Shopping.dart';
 import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _MyHomePageState();
@@ -16,7 +16,7 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.9),
+        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.89),
         appBar: AppBar(
           elevation: 0, //去除状态栏下的一条阴影
           toolbarHeight: 0,

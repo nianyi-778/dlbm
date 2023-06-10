@@ -24,23 +24,22 @@ class _MyTextFieldState extends State<MyTextField> {
         _focusNode.unfocus();
       },
       child: AbsorbPointer(
-        absorbing: _focusNode.hasFocus,
-        child: TextField(
-          focusNode: _focusNode,
-          style: const TextStyle(fontSize: 16.0),
-          textAlign: TextAlign.left,
-          onChanged: (value) {
-            print(value.trim());
-            // 处理文本框改变事件
-          },
-          decoration: InputDecoration(
-            hintText: '搜索',
-            border: InputBorder.none,
-            fillColor: Colors.grey[200],
-            prefixIcon: const Icon(Icons.search),
-          ),
-        )
-      ),
+          absorbing: _focusNode.hasFocus,
+          child: TextField(
+            focusNode: _focusNode,
+            style: const TextStyle(fontSize: 16.0),
+            textAlign: TextAlign.left,
+            onChanged: (value) {
+              print(value.trim());
+              // 处理文本框改变事件
+            },
+            decoration: InputDecoration(
+              hintText: '搜索',
+              border: InputBorder.none,
+              fillColor: Colors.grey[200],
+              prefixIcon: const Icon(Icons.search),
+            ),
+          )),
     );
   }
 }
