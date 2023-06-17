@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dlbm/pages/toolbox/components/ClassificationTools.dart';
 
 class Toolbox extends StatefulWidget {
   const Toolbox({Key? key}) : super(key: key);
@@ -15,11 +16,12 @@ class _ToolboxState extends State<Toolbox> {
         appBar: null, // 隐藏了app Bar
         body: SafeArea(
             child: Container(
-          constraints: const BoxConstraints.expand(),
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            children: const [Text('1')],
-          ),
-        )));
+                constraints: const BoxConstraints.expand(),
+                width: MediaQuery.of(context).size.width,
+                child: ListView(children: [
+                  Column(
+                    children: const [ClassificationTools()],
+                  ),
+                ]))));
   }
 }
