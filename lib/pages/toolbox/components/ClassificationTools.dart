@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:dlbm/pages/toolbox/components/CardItem.dart';
 
 class Item {
-  final String text;
-  final String icon;
+  final String title;
+  final IconData icon;
+  final Color bgColor;
+  final String description;
 
-  Item(this.text, this.icon);
+  Item(
+      {required this.title,
+      required this.bgColor,
+      required this.description,
+      required this.icon});
 }
 
 class ClassificationTools extends StatefulWidget {
@@ -17,6 +24,19 @@ class ClassificationTools extends StatefulWidget {
 }
 
 class _ClassificationToolsState extends State<ClassificationTools> {
+  List<Item> personList = [
+    Item(
+        title: '抖音去水印',
+        description: '无损高清原视频',
+        icon: Icons.image,
+        bgColor: const Color.fromRGBO(64, 149, 229, 0.84)),
+    Item(
+        title: 'AI换脸',
+        description: '给你不一样的身份',
+        icon: Icons.image,
+        bgColor: const Color.fromRGBO(215, 123, 21, 0.84)),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,20 +72,18 @@ class _ClassificationToolsState extends State<ClassificationTools> {
                 childAspectRatio: 1.5,
               ),
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.0),
-                    color: Colors.grey[300],
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Item ${index + 1}',
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                  ),
-                );
+                final person = personList[index];
+                if (person.title.isNotEmpty) {
+                  return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4.0),
+                        color: Colors.grey[0],
+                      ),
+                      child: CardItem(data: person));
+                }
+                return null;
               },
-              itemCount: 10,
+              itemCount: personList.length,
             )
           ],
         ));
