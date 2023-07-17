@@ -30,7 +30,6 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(data.title);
     return Container(
         padding: const EdgeInsets.fromLTRB(10, 6, 10, 16),
         decoration: BoxDecoration(
@@ -43,7 +42,7 @@ class CardItem extends StatelessWidget {
             ),
           ],
           borderRadius: BorderRadius.circular(6),
-          color: const Color.fromRGBO(64, 149, 229, 0.84),
+          color: data.bgColor,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,9 +75,9 @@ class CardItem extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerRight,
-              child: const Icon(
-                Icons.image,
-                color: Color.fromARGB(255, 199, 199, 199),
+              child: Icon(
+                data.icon,
+                color: const Color.fromARGB(255, 199, 199, 199),
               ),
             ),
           ],

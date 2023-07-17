@@ -33,7 +33,7 @@ class _ClassificationToolsState extends State<ClassificationTools> {
     Item(
         title: 'AI换脸',
         description: '给你不一样的身份',
-        icon: Icons.image,
+        icon: Icons.face_retouching_natural,
         bgColor: const Color.fromRGBO(215, 123, 21, 0.84)),
   ];
 
