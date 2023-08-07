@@ -46,21 +46,21 @@ class _ClassificationToolsState extends State<ClassificationTools> {
             Container(
               padding: const EdgeInsets.only(bottom: 6),
               width: MediaQuery.of(context).size.width,
-              child: const Text(
-                '实用工具',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Color.fromRGBO(16, 16, 16, 1),
-                    fontWeight: FontWeight.w600,
-                    height: 1.5, // 行高是fontSize的1.5倍
-                    shadows: [
-                      Shadow(
-                          offset: Offset(0, 2.0),
-                          blurRadius: 4.0,
-                          color: Color.fromARGB(255, 32, 32, 32))
-                    ]),
-                textAlign: TextAlign.left,
-              ),
+              // child: const Text(
+              //   '实用工具',
+              //   style: TextStyle(
+              //       fontSize: 18,
+              //       color: Color.fromRGBO(16, 16, 16, 1),
+              //       fontWeight: FontWeight.w600,
+              //       height: 1.5, // 行高是fontSize的1.5倍
+              //       shadows: [
+              //         Shadow(
+              //             offset: Offset(0, 2.0),
+              //             blurRadius: 4.0,
+              //             color: Color.fromARGB(255, 32, 32, 32))
+              //       ]),
+              //   textAlign: TextAlign.left,
+              // ),
             ),
             GridView.builder(
               shrinkWrap: true,

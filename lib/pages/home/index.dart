@@ -20,7 +20,7 @@ class _MyHomePageState extends State<HomePage> {
         appBar: AppBar(
           elevation: 0, //去除状态栏下的一条阴影
           toolbarHeight: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.blue,
           systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.blue,
           ),
