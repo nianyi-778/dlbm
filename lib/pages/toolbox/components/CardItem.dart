@@ -77,7 +77,7 @@ class CardItem extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Icon(
                 data.icon,
-                color: const Color.fromARGB(255, 199, 199, 199),
+                color: Colors.white, // const Color.fromARGB(255, 199, 199, 199)
               ),
             ),
           ],

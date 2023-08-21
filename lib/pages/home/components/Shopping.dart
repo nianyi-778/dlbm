@@ -12,8 +12,8 @@ class _HomePageShoppingState extends State<HomePageShopping> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: const <Widget>[
+        const Row(
+          children: <Widget>[
             Icon(
               Icons.shopping_cart,
               color: Color.fromARGB(255, 255, 0, 0),
