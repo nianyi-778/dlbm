@@ -3,7 +3,7 @@ import 'package:dlbm/pages/home/components/ShoppingItem.dart';
 import 'package:flutter/services.dart';
 
 class Shopping extends StatefulWidget {
-  const Shopping({super.key});
+  const Shopping({Key? key});
 
   @override
   State<Shopping> createState() => _ShoppingState();
@@ -25,33 +25,36 @@ class _ShoppingState extends State<Shopping> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15.0,
-          vertical: 15.0,
-        ),
+        padding: const EdgeInsets.only(left: 15, right: 15),
         width: MediaQuery.of(context).size.width,
-        child: Container(
-          margin: const EdgeInsets.only(top: 5, bottom: 15),
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
-              childAspectRatio: 1.5,
+        height: MediaQuery.of(context).size.height,
+        child: ListView(children: [
+          Stack(children: <Widget>[
+            Container(
+              margin: const EdgeInsets.only(top: 15, bottom: 5),
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 1.5,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Container(
+                      color: Colors.white,
+                      child: const ShoppingItem(),
+                    ),
+                  );
+                },
+                itemCount: 20,
+              ),
             ),
-            itemBuilder: (BuildContext context, int index) {
-              return ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Container(
-                    color: Colors.white,
-                    child: const ShoppingItem(),
-                  ));
-            },
-            itemCount: 20,
-          ),
-        ),
+          ])
+        ]),
       ),
     );
   }

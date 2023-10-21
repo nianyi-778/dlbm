@@ -17,12 +17,11 @@ class _MyHomePageState extends State<MyApp> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0, //去除状态栏下的一条阴影
-        toolbarHeight: 0,
         title: const Text(
           '个人中心',
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blue,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.blue,
         ),
