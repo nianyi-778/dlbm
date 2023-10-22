@@ -17,9 +17,10 @@ class _MyHomePageState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    print('Initializing...');
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.red, // 设置状态栏的背景颜色
-      // 其他样式设置
+      // systemNavigationBarColor: Colors.transparent, // 导航栏颜色
+      statusBarColor: Colors.white, // 状态栏颜色
     ));
   }
 
@@ -39,8 +40,7 @@ class _MyHomePageState extends State<MyApp> {
                 child: ListView(
               children: [
                 Container(
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  margin: const EdgeInsets.fromLTRB(15, 45, 15, 15),
                   width: double.infinity,
                   color: Colors.transparent,
                   child: const SafeArea(
