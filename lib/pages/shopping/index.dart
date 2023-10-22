@@ -26,8 +26,8 @@ class _ShoppingState extends State<Shopping> {
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        width: double.infinity,
+        height: double.infinity,
         child: ListView(children: [
           Stack(children: <Widget>[
             Container(
@@ -45,7 +45,7 @@ class _ShoppingState extends State<Shopping> {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: Container(
-                      color: Colors.white,
+                      color: Colors.transparent,
                       child: const ShoppingItem(),
                     ),
                   );

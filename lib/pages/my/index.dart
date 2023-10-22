@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:dlbm/pages/my/components/Header.dart';
+import 'package:dlbm/pages/my/components/CardList.dart';
 
 class MyApp extends StatefulWidget {
   // const HomePage({super.key, required this.title});
@@ -13,23 +15,43 @@ class MyApp extends StatefulWidget {
 
 class _MyHomePageState extends State<MyApp> {
   @override
+  void initState() {
+    super.initState();
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.red, // 设置状态栏的背景颜色
+      // 其他样式设置
+    ));
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.restoreSystemUIOverlays(); // 恢复系统UI样式
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0, //去除状态栏下的一条阴影
-        title: const Text(
-          '个人中心',
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.blue,
-        ),
-      ),
-      body: const Text(
-        'Welcome to 个人中心',
-        style: TextStyle(fontSize: 24),
-      ),
-    );
+        appBar: null,
+        body: Column(
+          children: [
+            Expanded(
+                child: ListView(
+              children: [
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                  width: double.infinity,
+                  color: Colors.transparent,
+                  child: const SafeArea(
+                    child: Column(
+                      children: [MyHeader(), CardList()],
+                    ),
+                  ),
+                ),
+              ],
+            ))
+          ],
+        ));
   }
 }

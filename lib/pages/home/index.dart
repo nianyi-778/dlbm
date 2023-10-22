@@ -28,7 +28,7 @@ class _MyHomePageState extends State<HomePage> {
         body: SafeArea(
             child: Container(
           constraints: const BoxConstraints.expand(),
-          width: MediaQuery.of(context).size.width,
+          width: double.infinity,
           child: Column(
             children: [
               Container(
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<HomePage> {
                     Stack(children: <Widget>[
                       Positioned(
                         // banner 下面铺的底色
-                        top: 0,
+                        top: -1,
                         right: 0,
                         left: 0,
                         child: Container(
@@ -86,7 +86,8 @@ class _MyHomePageState extends State<HomePage> {
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                      width: MediaQuery.of(context).size.width,
+                      // width: MediaQuery.of(context).size.width,
+                      width: double.infinity,
                       child: SizedBox(
                         height: 100.0,
                         child: ClipRRect(
