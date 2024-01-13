@@ -5,6 +5,7 @@ import 'package:dlbm/pages/home/index.dart';
 import 'package:dlbm/pages/my/index.dart';
 import 'package:dlbm/pages/shopping/index.dart';
 import 'package:dlbm/pages/toolbox/index.dart';
+import 'package:flutter/services.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -13,10 +14,39 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
+class ThemeNotifier extends ValueNotifier<ThemeData> {
+  ThemeNotifier(ThemeData value) : super(value);
+}
+
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
+  late ThemeNotifier _themeNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    _themeNotifier = ThemeNotifier(_getInitialTheme());
+  }
+
+  ThemeData _getInitialTheme() {
+    // 返回初始的主题数据
+    return ThemeData.light();
+  }
+
+  void _updateStatusBar() {
+    bool isWhite = (currentIndex == 3);
+    if (isWhite) {
+      setStatusBarStyle(Colors.white, Colors.black); // 设置状态栏背景色为蓝色，字体颜色为白色
+    } else {
+      setStatusBarStyle(Colors.blue, Colors.white); // 设置状态栏背景色为蓝色，字体颜色为白色
+    }
+  }
+
   onTap(index) {
-    setState(() => currentIndex = index);
+    setState(() {
+      currentIndex = index;
+      _updateStatusBar(); // Update the status bar after modifying currentIndex
+    });
   }
 
   @override
@@ -32,6 +62,17 @@ class _MainPageState extends State<MainPage> {
           Shopping(),
           MyApp(),
         ],
+      ),
+    );
+  }
+
+  void setStatusBarStyle(Color backgroundColor, Color fontColor) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: backgroundColor, // 设置状态栏的背景颜色
+        statusBarIconBrightness: fontColor == Colors.white
+            ? Brightness.light
+            : Brightness.dark, // 设置状态栏的字体颜色
       ),
     );
   }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:dlbm/pages/index.dart';
+import 'package:dlbm/pages/about/index.dart';
 
 class RouteConfiguration {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => const MainPage());
-      // case '/my':
-      //   return MaterialPageRoute(builder: (_) => const MyApp());
+      case '/about':
+        return MaterialPageRoute(builder: (_) => const About());
       // case '/shopping':
       //   return MaterialPageRoute(builder: (_) => const Shopping());
       // case '/toolbox':

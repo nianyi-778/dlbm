@@ -19,10 +19,6 @@ class _ShoppingState extends State<Shopping> {
           '优惠券',
         ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.blue,
-        ),
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),

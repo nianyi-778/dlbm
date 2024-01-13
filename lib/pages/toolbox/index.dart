@@ -20,10 +20,6 @@ class _ToolboxState extends State<Toolbox> {
             '实用工具',
           ),
           centerTitle: true,
-          backgroundColor: Colors.blue,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Colors.blue,
-          ),
         ), // 隐藏了app Bar
         body: SafeArea(
             child: Container(

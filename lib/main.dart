@@ -5,7 +5,10 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MyApp());
+
+  Future.delayed(const Duration(seconds: 3), () {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -15,6 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
     return const MaterialApp(
+      title: "dlbm",
+      initialRoute: '/',
       debugShowCheckedModeBanner: false, // 隐藏debug标记
       onGenerateRoute: RouteConfiguration.generateRoute,
     );
