@@ -13,8 +13,8 @@ class CardList extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       margin: const EdgeInsets.symmetric(vertical: 24),
-      child: const Column(
-        children: [
+      child: Column(
+        children: const [
           CardItem(name: '我的收藏'),
           CardItem(name: '我的问答'),
           CardItem(name: '问题反馈'),

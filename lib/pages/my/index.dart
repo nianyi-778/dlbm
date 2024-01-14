@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyApp> {
           margin: const EdgeInsets.fromLTRB(15, 45, 15, 15),
           width: double.infinity,
           color: Colors.transparent,
-          child: const SafeArea(
+          child: SafeArea(
             child: Column(
               children: [MyHeader(), CardList()],
             ),

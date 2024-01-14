@@ -17,9 +17,9 @@ class MyHeader extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.only(left: 10, top: 10),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   '太阳是我呀',
                   style: TextStyle(
