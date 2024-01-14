@@ -24,8 +24,15 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState() {
+    print('home mount');
     super.initState();
     _themeNotifier = ThemeNotifier(_getInitialTheme());
+  }
+
+  @override
+  void dispose() {
+    print('home unmount');
+    super.dispose();
   }
 
   ThemeData _getInitialTheme() {
@@ -36,7 +43,7 @@ class _MainPageState extends State<MainPage> {
   void _updateStatusBar() {
     bool isWhite = (currentIndex == 3);
     if (isWhite) {
-      setStatusBarStyle(Colors.white, Colors.black); // 设置状态栏背景色为蓝色，字体颜色为白色
+      setStatusBarStyle(Colors.white, Colors.black); // 设置状态栏背景色为白色，字体颜色为黑色
     } else {
       setStatusBarStyle(Colors.blue, Colors.white); // 设置状态栏背景色为蓝色，字体颜色为白色
     }

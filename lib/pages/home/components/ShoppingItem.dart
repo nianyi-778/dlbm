@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 
 class ShoppingItem extends StatefulWidget {
-  const ShoppingItem({super.key});
+  final String title;
+  final String pict_url;
+  final int volume;
+
+  const ShoppingItem(
+      {super.key,
+      required this.title,
+      required this.pict_url,
+      required this.volume});
+
   @override
-  _HomePageShoppingState createState() => _HomePageShoppingState();
+  _HomePageShoppingState createState() =>
+      _HomePageShoppingState(volume: volume, title: title, pict_url: pict_url);
 }
 
 class _HomePageShoppingState extends State<ShoppingItem> {
+  final String title;
+  final String pict_url;
+  final int volume;
+
+  _HomePageShoppingState(
+      {required this.title, required this.pict_url, required this.volume});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +41,7 @@ class _HomePageShoppingState extends State<ShoppingItem> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(6.0),
                         child: Image.network(
-                          'https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24',
+                          'https:$pict_url',
                           fit: BoxFit.fill,
                         )),
                   ),
@@ -40,12 +57,12 @@ class _HomePageShoppingState extends State<ShoppingItem> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    '雨伞双人加大男士雨伞上午哈哈哈哈雨伞双人加大男士雨伞上午哈哈哈哈雨伞双人加大男士雨伞上午哈哈哈哈',
+                  Text(
+                    title,
                     maxLines: 2,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                     ),
                   ),
@@ -144,9 +161,9 @@ class _HomePageShoppingState extends State<ShoppingItem> {
                 ],
               ),
             ),
-            const Text(
-              '月销量：100+',
-              style: TextStyle(
+            Text(
+              '月销量： $volume',
+              style: const TextStyle(
                   fontSize: 10, color: Color.fromRGBO(167, 160, 160, 1)),
             )
           ],

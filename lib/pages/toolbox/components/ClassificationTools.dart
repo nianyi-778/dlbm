@@ -74,14 +74,18 @@ class _ClassificationToolsState extends State<ClassificationTools> {
               itemBuilder: (BuildContext context, int index) {
                 final person = personList[index];
                 if (person.title.isNotEmpty) {
-                  return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4.0),
-                        color: Colors.grey[0],
-                      ),
-                      child: CardItem(data: person));
+                  return InkWell(
+                    onTap: () {
+                      print(person.title);
+                    },
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          color: Colors.grey[0],
+                        ),
+                        child: CardItem(data: person)),
+                  );
                 }
-                return null;
               },
               itemCount: personList.length,
             )
