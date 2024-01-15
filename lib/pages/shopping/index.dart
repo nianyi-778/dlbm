@@ -18,6 +18,11 @@ class ItemBasicInfo {
       json['pict_url'] as String,
     );
   }
+
+  @override
+  String toString() {
+    return 'ItemBasicInfo(title: $title, volume: $volume, pictUrl: $pictUrl)';
+  }
 }
 
 class ShoppingItemType {
@@ -31,6 +36,11 @@ class ShoppingItemType {
       json['item_id'] as String,
       ItemBasicInfo.fromJson(json['item_basic_info'] as Map<String, dynamic>),
     );
+  }
+
+  @override
+  String toString() {
+    return 'ShoppingItemType(itemId: $itemId, itemBasicInfo: $itemBasicInfo)';
   }
 }
 
@@ -50,34 +60,32 @@ class _ShoppingState extends State<Shopping> {
     loadJsonData();
   }
 
-  // Future<void> loadJsonData() async {
-  //   String jsonString = await rootBundle.loadString('assets/taobao_mock.json');
-  //   Map<String, dynamic> jsonMap = json.decode(jsonString);
-  //   List result = jsonMap['data']['result_list']['map_data'];
-  //   print(result);
-  //   shoppingList = result as List<ShoppingItemType>;
-  // }
   Future<void> loadJsonData() async {
     String jsonString = await rootBundle.loadString('assets/taobao_mock.json');
 
     List<ShoppingItemType> parseShoppingItemList(String jsonString) {
       Map<String, dynamic> jsonMap = json.decode(jsonString);
-      List<ShoppingItemType> jsonList =
-          jsonMap['data']['result_list']['map_data'];
+      assert(jsonMap.containsKey('data'));
+      assert(jsonMap['data'].containsKey('result_list'));
+      assert(jsonMap['data']['result_list'].containsKey('map_data'));
 
-      return jsonList.map((json) {
+      List<ShoppingItemType?> jsonList = List<Map<String, dynamic>>.from(
+              jsonMap['data']['result_list']['map_data'])
+          .map((json) {
         try {
           return ShoppingItemType.fromJson(json as Map<String, dynamic>);
         } catch (e) {
           print('Failed to convert JSON object: $json');
-          rethrow;
         }
+        return null;
       }).toList();
+
+      return jsonList.whereType<ShoppingItemType>().toList();
     }
 
-    shoppingList = parseShoppingItemList(jsonString);
-    print(shoppingList);
-    print("shoppingList");
+    setState(() {
+      shoppingList = parseShoppingItemList(jsonString);
+    });
   }
 
   @override
@@ -108,19 +116,17 @@ class _ShoppingState extends State<Shopping> {
                   childAspectRatio: 1.5,
                 ),
                 itemBuilder: (BuildContext context, int index) {
-                  return Text('123');
-                  // String title = shoppingList[index].item_basic_info.title;
-                  // int volume = shoppingList[index].item_basic_info.volume;
-                  // String pict_url =
-                  //     shoppingList[index].item_basic_info.pict_url;
-                  // return ClipRRect(
-                  //   borderRadius: BorderRadius.circular(10.0),
-                  //   child: Container(
-                  //     color: Colors.transparent,
-                  //     child: ShoppingItem(
-                  //         title: title, volume: volume, pict_url: pict_url),
-                  //   ),
-                  // );
+                  String title = shoppingList[index].itemBasicInfo.title;
+                  int volume = shoppingList[index].itemBasicInfo.volume;
+                  String pict_url = shoppingList[index].itemBasicInfo.pictUrl;
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Container(
+                      color: Colors.transparent,
+                      child: ShoppingItem(
+                          title: title, volume: volume, pict_url: pict_url),
+                    ),
+                  );
                 },
                 itemCount: shoppingList.length,
               ),
