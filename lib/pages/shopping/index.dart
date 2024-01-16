@@ -43,12 +43,14 @@ class Shopping extends StatefulWidget {
 class _ShoppingState extends State<Shopping> {
   List<ShoppingItemType> shoppingList = [];
   AxiosClient client = AxiosClient();
+  GlobalKey<RefreshIndicatorState> refreshKey =
+      GlobalKey<RefreshIndicatorState>();
 
   @override
   void initState() {
     super.initState();
-    print("shopping..");
     loadJsonData();
+    refreshKey.currentState?.show();
   }
 
   Future<void> _refreshData() async {
@@ -101,6 +103,7 @@ class _ShoppingState extends State<Shopping> {
         centerTitle: true,
       ),
       body: RefreshIndicator(
+        key: refreshKey,
         onRefresh: _refreshData, // 绑定刷新回调方法
         child: ListView(children: [
           Stack(children: <Widget>[
