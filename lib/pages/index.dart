@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   void _updateStatusBar() {
-    bool isWhite = (currentIndex != 1);
+    bool isWhite = (currentIndex != 0);
     if (isWhite) {
       setStatusBarStyle(Colors.white, Colors.black); // 设置状态栏背景色为白色，字体颜色为黑色
     } else {
