@@ -15,17 +15,20 @@ class _ToolboxState extends State<Toolbox> {
     return Scaffold(
         backgroundColor: const Color.fromRGBO(255, 255, 255, 0.89),
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black),
+          backgroundColor: Colors.white,
           elevation: 0, //去除状态栏下的一条阴影
           title: const Text(
             '实用工具',
+            style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
-        ), // 隐藏了app Bar
+        ),
         body: SafeArea(
             child: Container(
                 constraints: const BoxConstraints.expand(),
                 width: MediaQuery.of(context).size.width,
-                child: ListView(children: [
+                child: ListView(children: const [
                   Column(
                     children: [ClassificationTools()],
                   ),

@@ -6,7 +6,7 @@ void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  Future.delayed(const Duration(seconds: 3), () {
+  Future.delayed(const Duration(seconds: 1), () {
     runApp(const MyApp());
   });
 }

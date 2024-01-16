@@ -42,7 +42,7 @@ class _HomePageShoppingState extends State<HomePageShopping> {
                   borderRadius: BorderRadius.circular(10.0),
                   child: Container(
                     color: Colors.transparent,
-                    child: null,
+                    child: Text('test'),
                     // const ShoppingItem()
                   ));
             },

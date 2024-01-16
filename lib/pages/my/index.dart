@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyApp> {
     return Scaffold(
         appBar: null,
         body: Container(
-          margin: const EdgeInsets.fromLTRB(15, 45, 15, 15),
+          margin: const EdgeInsets.fromLTRB(15, 25, 15, 15),
           width: double.infinity,
           color: Colors.transparent,
           child: SafeArea(
