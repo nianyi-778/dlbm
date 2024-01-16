@@ -41,12 +41,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   void _updateStatusBar() {
-    // bool isWhite = (currentIndex == 3);
-    // if (isWhite) {
-    //   setStatusBarStyle(Colors.white, Colors.black); // 设置状态栏背景色为白色，字体颜色为黑色
-    // } else {
-    //   setStatusBarStyle(Colors.blue, Colors.white); // 设置状态栏背景色为蓝色，字体颜色为白色
-    // }
+    bool isWhite = (currentIndex != 1);
+    if (isWhite) {
+      setStatusBarStyle(Colors.white, Colors.black); // 设置状态栏背景色为白色，字体颜色为黑色
+    } else {
+      setStatusBarStyle(Colors.blue, Colors.white); // 设置状态栏背景色为蓝色，字体颜色为白色
+    }
   }
 
   onTap(index) {
@@ -75,14 +75,14 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  // void setStatusBarStyle(Color backgroundColor, Color fontColor) {
-  //   SystemChrome.setSystemUIOverlayStyle(
-  //     SystemUiOverlayStyle(
-  //       statusBarColor: backgroundColor, // 设置状态栏的背景颜色
-  //       statusBarIconBrightness: fontColor == Colors.white
-  //           ? Brightness.light
-  //           : Brightness.dark, // 设置状态栏的字体颜色
-  //     ),
-  //   );
-  // }
+  void setStatusBarStyle(Color backgroundColor, Color fontColor) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: backgroundColor, // 设置状态栏的背景颜色
+        statusBarIconBrightness: fontColor == Colors.white
+            ? Brightness.light
+            : Brightness.dark, // 设置状态栏的字体颜色
+      ),
+    );
+  }
 }

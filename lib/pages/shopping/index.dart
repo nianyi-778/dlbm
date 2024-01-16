@@ -1,8 +1,7 @@
-import 'dart:convert';
-
+import 'package:dlbm/utils/request.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/pages/home/components/ShoppingItem.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 
 class ItemBasicInfo {
   String title;
@@ -18,11 +17,6 @@ class ItemBasicInfo {
       json['pict_url'] as String,
     );
   }
-
-  @override
-  String toString() {
-    return 'ItemBasicInfo(title: $title, volume: $volume, pictUrl: $pictUrl)';
-  }
 }
 
 class ShoppingItemType {
@@ -37,11 +31,6 @@ class ShoppingItemType {
       ItemBasicInfo.fromJson(json['item_basic_info'] as Map<String, dynamic>),
     );
   }
-
-  @override
-  String toString() {
-    return 'ShoppingItemType(itemId: $itemId, itemBasicInfo: $itemBasicInfo)';
-  }
 }
 
 class Shopping extends StatefulWidget {
@@ -53,6 +42,8 @@ class Shopping extends StatefulWidget {
 
 class _ShoppingState extends State<Shopping> {
   List<ShoppingItemType> shoppingList = [];
+  AxiosClient client = AxiosClient();
+
   @override
   void initState() {
     super.initState();
@@ -60,11 +51,19 @@ class _ShoppingState extends State<Shopping> {
     loadJsonData();
   }
 
-  Future<void> loadJsonData() async {
-    String jsonString = await rootBundle.loadString('assets/taobao_mock.json');
+  Future<void> _refreshData() async {
+    await loadJsonData();
+  }
 
-    List<ShoppingItemType> parseShoppingItemList(String jsonString) {
-      Map<String, dynamic> jsonMap = json.decode(jsonString);
+  Future<void> loadJsonData() async {
+    Map<String, dynamic> response = await client.request(
+      method: 'get',
+      url:
+          'https://dt-easyv-test.oss-cn-hangzhou.aliyuncs.com/tmp/taobao_mock.json',
+      queryParameters: {'param1': 'value1', 'param2': 'value2'},
+    );
+
+    List<ShoppingItemType> parseShoppingItemList(jsonMap) {
       assert(jsonMap.containsKey('data'));
       assert(jsonMap['data'].containsKey('result_list'));
       assert(jsonMap['data']['result_list'].containsKey('map_data'));
@@ -84,7 +83,7 @@ class _ShoppingState extends State<Shopping> {
     }
 
     setState(() {
-      shoppingList = parseShoppingItemList(jsonString);
+      shoppingList = parseShoppingItemList(response);
     });
   }
 
@@ -101,9 +100,8 @@ class _ShoppingState extends State<Shopping> {
         ),
         centerTitle: true,
       ),
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
+      body: RefreshIndicator(
+        onRefresh: _refreshData, // 绑定刷新回调方法
         child: ListView(children: [
           Stack(children: <Widget>[
             Container(
