@@ -93,15 +93,10 @@ class _ShoppingState extends State<Shopping> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
         elevation: 0, //去除状态栏下的一条阴影
-        title: const Text(
-          '优惠券',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
+        toolbarHeight: 0,
+        backgroundColor: Colors.white,
+      ), // 隐
       body: RefreshIndicator(
         key: refreshKey,
         onRefresh: _refreshData, // 绑定刷新回调方法

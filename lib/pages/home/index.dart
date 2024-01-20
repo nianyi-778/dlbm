@@ -1,3 +1,4 @@
+import 'package:dlbm/components/NetworkImageWithPlaceholder%20.dart';
 import 'package:flutter/material.dart';
 import "package:dlbm/components/Swiper.dart";
 import 'package:dlbm/components/TextField.dart';
@@ -92,10 +93,14 @@ class _MyHomePageState extends State<HomePage> {
                         height: 100.0,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(10.0),
-                            child: Image.network(
-                              "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
-                              fit: BoxFit.fill,
+                            child: const NetworkImageWithSkeleton(
+                              imageUrl:
+                                  "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
                             )),
+                        // child: Image.network(
+                        //   "https://easyv.assets.dtstack.com//data/3384/1819163/img/gjrwpsp3pq_1681286516293_6a3xpg1dqc.jpg?x-oss-process=image/resize,m_lfit,h_97,color_181b24",
+                        //   fit: BoxFit.fill,
+                        // )),
                       ),
                     ),
                     Container(

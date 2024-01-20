@@ -38,11 +38,13 @@ class CardItem extends StatelessWidget {
           if (link != null) {
             Navigator.pushNamed(context, link!);
           } else {
-            Fluttertoast.showToast(
-              msg: name,
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-            );
+            if (name.isNotEmpty) {
+              Fluttertoast.showToast(
+                msg: name,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+              );
+            }
           }
         },
         child: Container(

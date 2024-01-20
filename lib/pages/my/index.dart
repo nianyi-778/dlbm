@@ -1,6 +1,8 @@
+import 'package:dlbm/components/Login/index.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/pages/my/components/Header.dart';
 import 'package:dlbm/pages/my/components/CardList.dart';
+import 'package:flutter/services.dart';
 
 class MyApp extends StatefulWidget {
   // const HomePage({super.key, required this.title});
@@ -13,9 +15,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyApp> {
+  late bool isLogin;
+
   @override
   void initState() {
     super.initState();
+    isLogin = false; // 初始化 isLogin 字段为 false
     print('mount...');
   }
 
@@ -28,21 +33,31 @@ class _MyHomePageState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: null,
-        body: Container(
-          margin: const EdgeInsets.fromLTRB(15, 25, 15, 15),
-          width: double.infinity,
-          color: Colors.transparent,
-          child: SafeArea(
-            child: Column(
-              children: [MyHeader(), CardList()],
-            ),
-          ),
-        ));
+        appBar: AppBar(
+          elevation: 0, //去除状态栏下的一条阴影
+          toolbarHeight: 0,
+          backgroundColor: Colors.white,
+        ), // 隐
+        body: const UserInfo());
   }
 }
 
-
+class UserInfo extends StatelessWidget {
+  const UserInfo({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(15, 25, 15, 15),
+      width: double.infinity,
+      color: Colors.transparent,
+      child: const SafeArea(
+        child: Column(
+          children: [MyHeader(), CardList()],
+        ),
+      ),
+    );
+  }
+}
 
 /**
  
@@ -66,4 +81,4 @@ class _MyHomePageState extends State<MyApp> {
           ],
         )
 
- * */ 
+ * */

@@ -1,3 +1,4 @@
+import 'package:dlbm/components/NetworkImageWithPlaceholder%20.dart';
 import 'package:flutter/material.dart';
 
 class ShoppingItem extends StatefulWidget {
@@ -37,14 +38,13 @@ class _HomePageShoppingState extends State<ShoppingItem> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 80,
-                    child: ClipRRect(
+                      height: 80,
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(6.0),
-                        child: Image.network(
-                          'https:$pict_url',
-                          fit: BoxFit.fill,
-                        )),
-                  ),
+                        child: NetworkImageWithSkeleton(
+                          imageUrl: 'https:$pict_url',
+                        ),
+                      )),
                   const SizedBox(
                     height: 6,
                   ),

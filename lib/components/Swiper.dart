@@ -1,3 +1,4 @@
+import 'package:dlbm/components/NetworkImageWithPlaceholder%20.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
@@ -23,11 +24,20 @@ class _CupertinoSwiperState extends State<CupertinoSwiper> {
             scale: 0.9,
             itemBuilder: (BuildContext context, int index) {
               return ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image.network(
-                    widget.images[index],
-                    fit: BoxFit.fill,
-                  ));
+                borderRadius: BorderRadius.circular(10.0),
+                child: NetworkImageWithSkeleton(
+                  imageUrl: widget.images[index],
+                ),
+                // child: Image.network(
+                //   widget.images[index],
+                //   fit: BoxFit.fill,
+                // )
+              );
+              // NetworkImageWithSkeleton(
+              //   imageUrl: widget.images[index],
+              //   width: 200,
+              //   height: 200,
+              // ));
             },
             autoplay: true,
             pagination: new SwiperPagination(),
