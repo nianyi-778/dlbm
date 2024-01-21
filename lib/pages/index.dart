@@ -20,24 +20,17 @@ class ThemeNotifier extends ValueNotifier<ThemeData> {
 
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
-  late ThemeNotifier _themeNotifier;
 
   @override
   void initState() {
     print('home mount');
     super.initState();
-    _themeNotifier = ThemeNotifier(_getInitialTheme());
   }
 
   @override
   void dispose() {
     print('home unmount');
     super.dispose();
-  }
-
-  ThemeData _getInitialTheme() {
-    // 返回初始的主题数据
-    return ThemeData.light();
   }
 
   void _updateStatusBar() {
@@ -50,10 +43,14 @@ class _MainPageState extends State<MainPage> {
   }
 
   onTap(index) {
-    setState(() {
-      currentIndex = index;
-      _updateStatusBar(); // Update the status bar after modifying currentIndex
-    });
+    if (index == 3) {
+      Navigator.pushNamed(context, '/login');
+    } else {
+      setState(() {
+        currentIndex = index;
+        _updateStatusBar(); // Update the status bar after modifying currentIndex
+      });
+    }
   }
 
   final List<Widget> _children = const [

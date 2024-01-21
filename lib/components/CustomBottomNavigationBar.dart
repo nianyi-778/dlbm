@@ -18,9 +18,7 @@ class _BottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     return SalomonBottomBar(
       currentIndex: widget.currentIndex,
-      onTap: (i) {
-        widget.onTap(i);
-      },
+      onTap: widget.onTap,
       items: [
         /// Home
         SalomonBottomBarItem(

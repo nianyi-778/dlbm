@@ -1,4 +1,4 @@
-import 'package:dlbm/components/Login/index.dart';
+import 'package:dlbm/pages/Login/index.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/pages/my/components/Header.dart';
 import 'package:dlbm/pages/my/components/CardList.dart';

@@ -1,4 +1,4 @@
-import 'package:dlbm/components/NetworkImageWithPlaceholder%20.dart';
+import 'package:dlbm/components/NetworkImageWithPlaceholder.dart';
 import 'package:flutter/material.dart';
 import "package:dlbm/components/Swiper.dart";
 import 'package:dlbm/components/TextField.dart';

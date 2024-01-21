@@ -13,23 +13,20 @@ class RouteConfiguration {
         return CupertinoPageRoute(builder: (_) => const About());
       case '/login':
         // return CupertinoPageRoute(builder: (_) => const LoginPage());
-        return CupertinoPageRoute(
-          builder: (context) => const LoginPage(),
-          fullscreenDialog: true,
-          transitionDuration: const Duration(milliseconds: 250),
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const LoginPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            var begin = Offset(0.0, 1.0);
+            var end = Offset.zero;
+            var curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
             return SlideTransition(
-              position: Tween<Offset>(
-                begin: Offset(0.0, 1.0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: SlideTransition(
-                position: Tween<Offset>(
-                  begin: Offset.zero,
-                  end: Offset(0.0, -1.0),
-                ).animate(secondaryAnimation),
-                child: child,
-              ),
+              position: animation.drive(tween),
+              child: child,
             );
           },
         );

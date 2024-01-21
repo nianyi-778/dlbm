@@ -1,4 +1,4 @@
-import 'package:dlbm/components/NetworkImageWithPlaceholder%20.dart';
+import 'package:dlbm/components/NetworkImageWithPlaceholder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 
