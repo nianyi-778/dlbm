@@ -14,6 +14,11 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
@@ -75,7 +80,8 @@ class _LoginPageState extends State<LoginPage> {
                 )),
           ),
           Container(
-            margin: EdgeInsets.only(top: 40, right: 10), // 设置外边距
+            padding: EdgeInsets.only(top: 40, right: 10),
+            // margin: EdgeInsets.only(), // 设置外边距
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

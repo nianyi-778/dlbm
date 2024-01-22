@@ -30,6 +30,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void dispose() {
     print('home unmount');
+    setStatusBarStyle(Colors.transparent, Colors.black); // 设置状态栏背景色为白色，字体颜色为黑色
     super.dispose();
   }
 
