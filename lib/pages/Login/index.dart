@@ -75,14 +75,14 @@ class _LoginPageState extends State<LoginPage> {
                 )),
           ),
           Container(
-            margin: EdgeInsets.only(top: 20), // 设置外边距
+            margin: EdgeInsets.only(top: 40, right: 10), // 设置外边距
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
                   icon: Icon(
                     Icons.clear,
-                    size: 20,
+                    size: 24,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: Text(
                     '帮助与设置',
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
                 )
               ],
