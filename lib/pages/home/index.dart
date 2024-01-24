@@ -17,10 +17,10 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.89),
         appBar: null, // 隐藏了app Bar
         body: SafeArea(
             child: Container(
+          color: const Color.fromRGBO(255, 255, 255, 0.89),
           constraints: const BoxConstraints.expand(),
           width: double.infinity,
           child: Column(
