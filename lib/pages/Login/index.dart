@@ -1,3 +1,4 @@
+import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,6 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     print('init login');
+    setStatusBarStyle(Colors.white, Colors.black);
   }
 
   @override
