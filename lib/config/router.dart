@@ -1,4 +1,4 @@
-import 'package:dlbm/pages/Login/index.dart';
+import 'package:dlbm/pages/Login/pwaLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/pages/index.dart';
 import 'package:dlbm/pages/about/index.dart';
@@ -15,7 +15,7 @@ class RouteConfiguration {
         // return CupertinoPageRoute(builder: (_) => const LoginPage());
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
-              const LoginPage(),
+              const PwaLoginPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             var begin = Offset(0.0, 1.0);
             var end = Offset.zero;
