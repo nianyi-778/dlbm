@@ -1,6 +1,6 @@
 // 关于我的
+import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class About extends StatefulWidget {
   const About({super.key});
@@ -22,10 +22,7 @@ class _MyHomePageState extends State<About> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.white, // 设置信号栏的底色为白色
-      statusBarIconBrightness: Brightness.dark, // 设置信号栏字体颜色为黑色
-    ));
+    setStatusBarStyle(Colors.white, Colors.black);
     return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.black),

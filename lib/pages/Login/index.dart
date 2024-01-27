@@ -11,11 +11,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    print('init login');
   }
 
   @override
   void dispose() {
     super.dispose();
+    print('dispose login');
   }
 
   @override
@@ -80,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 )),
           ),
           Container(
-            padding: EdgeInsets.only(top: 40, right: 10),
+            padding: EdgeInsets.only(top: 20, right: 10),
             // margin: EdgeInsets.only(), // 设置外边距
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
