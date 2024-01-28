@@ -9,25 +9,51 @@ class PwaLoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<PwaLoginPage> {
+  bool _obscureText = true;
+  TextEditingController _accController = TextEditingController();
+  TextEditingController _pwdController = TextEditingController();
+  String _userName = '';
+  String _password = '';
+
   @override
   void initState() {
     super.initState();
     print('init login');
     setStatusBarStyle(Colors.white, Colors.black);
+    _accController.addListener(_handleAccountChange);
+    _pwdController.addListener(_handlePwdChange);
   }
 
   @override
   void dispose() {
     super.dispose();
+    _accController.removeListener(_handleAccountChange);
+    _pwdController.removeListener(_handlePwdChange);
+    _accController.dispose();
+    _pwdController.dispose();
     print('dispose login');
+  }
+
+  void _handleAccountChange() {
+    setState(() {
+      _userName = _accController.text;
+    });
+  }
+
+  void _handlePwdChange() {
+    setState(() {
+      _password = _pwdController.text;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    bool _isDisabled = _userName.isNotEmpty && _password.isNotEmpty;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back), // 返回按钮的图标
+          icon: const Icon(Icons.arrow_back), // 返回按钮的图标
           onPressed: () {
             // 返回按钮的点击事件
             Navigator.pop(context);
@@ -38,25 +64,117 @@ class _LoginPageState extends State<PwaLoginPage> {
       body: Column(
         children: [
           Expanded(
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 30),
+                  child: const Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        '密码登录',
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
+                      )),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                TextField(
+                  controller: _accController,
+                  decoration: const InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(
+                              50, 199, 198, 198)), // 设置未选中时的下边界线颜色
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(
+                              50, 199, 198, 198)), // 设置选中时的下边界线颜色
+                    ),
+                    hintText: '请输入账号', // 设置提示文字
+                    contentPadding: EdgeInsets.only(
+                        left: 40, // 设置左内边距
+                        right: 20, // 设置右内边距
+                        top: 20,
+                        bottom: 20),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 30),
+                ),
+                TextField(
+                  controller: _pwdController,
+                  obscureText: _obscureText, // 设置密码输入框
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureText ? Icons.visibility_off : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    ),
+                    enabledBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(
+                              50, 199, 198, 198)), // 设置未选中时的下边界线颜色
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(
+                              50, 199, 198, 198)), // 设置选中时的下边界线颜色
+                    ),
+                    hintText: '请输入登录密码', // 设置提示文字
+                    contentPadding: const EdgeInsets.only(
+                        left: 40, // 设置左内边距
+                        top: 20,
+                        bottom: 20),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(right: 20, top: 5),
+                  child: const Align(
+                    alignment: Alignment.centerRight,
                     child: Text(
-                      '密码登录',
-                      style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600),
+                      '登录遇到问题',
+                      style: TextStyle(fontSize: 12, color: Colors.black38),
                     ),
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                SizedBox.fromSize(
+                  size: Size(MediaQuery.of(context).size.width * 0.8,
+                      45), // 设置按钮的宽度和高度
+                  child: ElevatedButton(
+                    onPressed: _isDisabled
+                        ? () {
+                            // 处理按钮点击事件
+                          }
+                        : null,
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: _isDisabled
+                          ? Colors.blue
+                          : Colors.black12, // 未激活时的文字颜色
+                      elevation: 0.0, // 取消阴影
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0), // 设置按钮的圆角
+                      ),
+                    ),
+                    child: const Text(
+                      '确认登录',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
           const Expanded(
