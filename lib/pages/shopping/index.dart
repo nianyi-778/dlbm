@@ -1,6 +1,8 @@
 import 'package:dlbm/utils/request.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/pages/home/components/ShoppingItem.dart';
+import 'package:dlbm/pages/home/components/SkeletonScreen.dart';
+// SkeletonShopping
 import 'package:flutter/material.dart';
 
 class ItemBasicInfo {
@@ -42,6 +44,7 @@ class Shopping extends StatefulWidget {
 
 class _ShoppingState extends State<Shopping> {
   List<ShoppingItemType> shoppingList = [];
+  bool _isLoading = true;
   AxiosClient client = AxiosClient();
   GlobalKey<RefreshIndicatorState> refreshKey =
       GlobalKey<RefreshIndicatorState>();
@@ -50,6 +53,9 @@ class _ShoppingState extends State<Shopping> {
   void initState() {
     super.initState();
     loadJsonData();
+    setState(() {
+      _isLoading = false;
+    });
     refreshKey.currentState?.show();
   }
 
@@ -87,6 +93,7 @@ class _ShoppingState extends State<Shopping> {
     setState(() {
       shoppingList = parseShoppingItemList(response);
     });
+    print('shoppingList');
   }
 
   @override
@@ -97,42 +104,70 @@ class _ShoppingState extends State<Shopping> {
         toolbarHeight: 0,
         backgroundColor: Colors.white,
       ), // 隐
-      body: RefreshIndicator(
-        key: refreshKey,
-        onRefresh: _refreshData, // 绑定刷新回调方法
-        child: ListView(children: [
-          Stack(children: <Widget>[
-            Container(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              margin: const EdgeInsets.only(top: 15, bottom: 5),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 1.5,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  String title = shoppingList[index].itemBasicInfo.title;
-                  int volume = shoppingList[index].itemBasicInfo.volume;
-                  String pict_url = shoppingList[index].itemBasicInfo.pictUrl;
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: Container(
-                      color: Colors.transparent,
-                      child: ShoppingItem(
-                          title: title, volume: volume, pict_url: pict_url),
+      body: _isLoading
+          ? ListView(children: [
+              Stack(children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  margin: const EdgeInsets.only(top: 15, bottom: 5),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 12,
+                      childAspectRatio: 1.5,
                     ),
-                  );
-                },
-                itemCount: shoppingList.length,
-              ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return const SkeletonShopping();
+                    },
+                    itemCount: 7,
+                  ),
+                ),
+              ])
+            ])
+          : RefreshIndicator(
+              key: refreshKey,
+              onRefresh: _refreshData, // 绑定刷新回调方法
+              child: ListView(children: [
+                Stack(children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    margin: const EdgeInsets.only(top: 15, bottom: 5),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 12,
+                        childAspectRatio: 1.5,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        String title = shoppingList[index].itemBasicInfo.title;
+                        int volume = shoppingList[index].itemBasicInfo.volume;
+                        String pict_url =
+                            shoppingList[index].itemBasicInfo.pictUrl;
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Container(
+                            color: Colors.transparent,
+                            child: ShoppingItem(
+                                title: title,
+                                volume: volume,
+                                pict_url: pict_url),
+                          ),
+                        );
+                      },
+                      itemCount: shoppingList.length,
+                    ),
+                  ),
+                ])
+              ]),
             ),
-          ])
-        ]),
-      ),
     );
   }
 }

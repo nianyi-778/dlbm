@@ -1,3 +1,4 @@
+import 'package:dlbm/pages/home/components/SkeletonScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/pages/home/components/ShoppingItem.dart';
 
@@ -42,7 +43,7 @@ class _HomePageShoppingState extends State<HomePageShopping> {
                   borderRadius: BorderRadius.circular(10.0),
                   child: Container(
                     color: Colors.transparent,
-                    child: Text('test'),
+                    child: const SkeletonShopping(),
                     // const ShoppingItem()
                   ));
             },
