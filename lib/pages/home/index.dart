@@ -23,7 +23,7 @@ class _MyHomePageState extends State<HomePage> {
         ), // 隐
         body: SafeArea(
             child: Container(
-          // color: const Color.fromRGBO(255, 255, 255, 0.89),
+          color: const Color.fromRGBO(255, 255, 255, 0.89),
           constraints: const BoxConstraints.expand(),
           width: double.infinity,
           child: Column(
@@ -100,10 +100,7 @@ class _MyHomePageState extends State<HomePage> {
                       ),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0,
-                        vertical: 15.0,
-                      ),
+                      padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
                       width: MediaQuery.of(context).size.width,
                       child: const HomePageShopping(),
                     ),
