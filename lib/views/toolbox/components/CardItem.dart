@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dlbm/pages/toolbox/components/ClassificationTools.dart';
+import 'package:dlbm/views/toolbox/components/ClassificationTools.dart';
 
 String removeFirstWord(String text) {
   // 将字符串按空格分割为单词列表

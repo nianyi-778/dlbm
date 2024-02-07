@@ -1,7 +1,7 @@
 import 'package:dlbm/utils/request.dart';
 import 'package:flutter/material.dart';
-import 'package:dlbm/pages/home/components/ShoppingItem.dart';
-import 'package:dlbm/pages/home/components/SkeletonScreen.dart';
+import 'package:dlbm/views/home/components/ShoppingItem.dart';
+import 'package:dlbm/views/home/components/SkeletonScreen.dart';
 // SkeletonShopping
 import 'package:flutter/material.dart';
 

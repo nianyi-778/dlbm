@@ -2,8 +2,8 @@ import 'package:dlbm/components/NetworkImageWithPlaceholder.dart';
 import 'package:flutter/material.dart';
 import "package:dlbm/components/Swiper.dart";
 import 'package:dlbm/components/TextField.dart';
-import 'package:dlbm/pages/home/components/Menu.dart';
-import 'package:dlbm/pages/home/components/Shopping.dart';
+import 'package:dlbm/views/home/components/Menu.dart';
+import 'package:dlbm/views/home/components/Shopping.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

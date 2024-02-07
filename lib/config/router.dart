@@ -1,7 +1,7 @@
-import 'package:dlbm/pages/Login/pwaLogin.dart';
+import 'package:dlbm/views/Login/pwaLogin.dart';
 import 'package:flutter/material.dart';
-import 'package:dlbm/pages/index.dart';
-import 'package:dlbm/pages/about/index.dart';
+import 'package:dlbm/views/index.dart';
+import 'package:dlbm/views/about/index.dart';
 import 'package:flutter/cupertino.dart';
 
 class RouteConfiguration {

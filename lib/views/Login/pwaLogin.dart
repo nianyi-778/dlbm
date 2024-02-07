@@ -1,5 +1,7 @@
+import 'package:dlbm/services/user/user_impl.dart';
 import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PwaLoginPage extends StatefulWidget {
   const PwaLoginPage({Key? key}) : super(key: key);
@@ -9,6 +11,7 @@ class PwaLoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<PwaLoginPage> {
+  UserServiceImpl userServiceImpl = new UserServiceImpl();
   bool _obscureText = true;
   TextEditingController _accController = TextEditingController();
   TextEditingController _pwdController = TextEditingController();
@@ -51,6 +54,23 @@ class _LoginPageState extends State<PwaLoginPage> {
     setState(() {
       _password = _pwdController.text;
     });
+  }
+
+  void _handleLogin() async {
+    // 处理按钮点击事件
+    dynamic result = await userServiceImpl.login(_userName, _password);
+    if (result == null) {
+      // 登录失败
+      Fluttertoast.showToast(
+        msg: '账号或密码错误，请检查后重试！',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+      );
+    } else {
+      Navigator.pop(context);
+      // 登录成功
+      print(result);
+    }
   }
 
   @override
@@ -174,11 +194,7 @@ class _LoginPageState extends State<PwaLoginPage> {
                     size: Size(MediaQuery.of(context).size.width * 0.8,
                         45), // 设置按钮的宽度和高度
                     child: ElevatedButton(
-                      onPressed: _isDisabled
-                          ? () {
-                              // 处理按钮点击事件
-                            }
-                          : null,
+                      onPressed: _isDisabled ? _handleLogin : null,
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: _isDisabled

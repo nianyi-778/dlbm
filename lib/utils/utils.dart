@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void setStatusBarStyle(Color backgroundColor, Color fontColor) {
   SystemChrome.setSystemUIOverlayStyle(
@@ -10,4 +10,10 @@ void setStatusBarStyle(Color backgroundColor, Color fontColor) {
           : Brightness.light, // 设置状态栏的字体颜色
     ),
   );
+}
+
+// localStorage
+Future<SharedPreferences> localStorage() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs;
 }

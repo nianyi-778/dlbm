@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dlbm/pages/toolbox/components/CardItem.dart';
+import 'package:dlbm/views/toolbox/components/CardItem.dart';
 
 class Item {
   final String title;

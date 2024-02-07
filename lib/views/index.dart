@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dlbm/components/CustomBottomNavigationBar.dart';
 
-import 'package:dlbm/pages/home/index.dart';
-import 'package:dlbm/pages/my/index.dart';
-import 'package:dlbm/pages/shopping/index.dart';
-import 'package:dlbm/pages/toolbox/index.dart';
+import 'package:dlbm/views/home/index.dart';
+import 'package:dlbm/views/my/index.dart';
+import 'package:dlbm/views/shopping/index.dart';
+import 'package:dlbm/views/toolbox/index.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

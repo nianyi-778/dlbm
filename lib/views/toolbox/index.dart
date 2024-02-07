@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dlbm/pages/toolbox/components/ClassificationTools.dart';
+import 'package:dlbm/views/toolbox/components/ClassificationTools.dart';
 import 'package:flutter/services.dart';
 
 class Toolbox extends StatefulWidget {
