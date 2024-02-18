@@ -1,13 +1,20 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
+import 'package:dlbm/utils/utils.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AxiosClient {
   Dio _dio;
+  late SharedPreferences storage;
+
+  void main() async {
+    storage = await localStorage();
+  }
 
   AxiosClient({BaseOptions? options}) : _dio = Dio(options) {
     _dio = Dio(options ?? BaseOptions());
+    String? token = storage.getString('token');
+
     // 添加其他的配置，如请求拦截器、响应拦截器等
     // 设置默认的 baseUrl
     _dio.interceptors.add(InterceptorsWrapper(
@@ -18,6 +25,7 @@ class AxiosClient {
         options.baseUrl = apiUrl!;
         // 添加其他请求头
         options.headers['x-client-type'] = 'android';
+        options.headers['Authorization'] = 'Bearer $token';
         handler.next(options);
       },
     ));

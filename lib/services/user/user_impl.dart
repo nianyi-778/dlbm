@@ -15,9 +15,10 @@ class UserServiceImpl implements UserService {
       url: '/auth/login',
       data: {"username": username, "password": password},
     );
-    if (result?.token is String) {
+    if (result != null && result.containsKey('token')) {
+      String token = result['token'];
       SharedPreferences storage = await localStorage();
-      storage.setString('token', result.token);
+      storage.setString('token', token);
     }
 
     return result;
