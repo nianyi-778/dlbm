@@ -214,7 +214,7 @@ class _LoginPageState extends State<PwaLoginPage> {
                   )
                 ],
               ),
-              Expanded(
+              const Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Row(
@@ -236,7 +236,7 @@ class _LoginPageState extends State<PwaLoginPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],
