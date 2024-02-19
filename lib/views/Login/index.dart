@@ -13,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     print('init login');
-    setStatusBarStyle(Colors.white, Colors.black);
+    setStatusBarStyle(Colors.transparent, Colors.black);
   }
 
   @override
@@ -25,14 +25,37 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
+      appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(
+              Icons.clear,
+              size: 24,
+            ), // 返回按钮的图标
+            onPressed: () {
+              // 返回按钮的点击事件
+              Navigator.pop(context);
+            },
+          ),
+          title: null, // 设置为null，不显示标题
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                // 在此处添加点击事件的处理逻辑
+                print('TextButton 被点击了！');
+              },
+              child: const Text(
+                '帮助与设置',
+                style: TextStyle(fontSize: 14, color: Colors.black),
+              ),
+            )
+          ]),
       body: Stack(
         children: [
           FractionallySizedBox(
             widthFactor: 1,
             heightFactor: .5,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
                     'https://pic2.zhimg.com/80/v2-5180bc5090487b0ee9a273d1de72a6dd_720w.webp',
@@ -47,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
             widthFactor: 1,
             heightFactor: 0.5,
             child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Colors.white, Color.fromRGBO(255, 255, 255, .6)],
                     begin: Alignment.bottomCenter,
@@ -60,8 +83,8 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       width: 70,
                       height: 70,
-                      margin: EdgeInsets.only(bottom: 10),
-                      decoration: BoxDecoration(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      decoration: const BoxDecoration(
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey,
@@ -72,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: Image.asset('assets/icon/icon.png'),
                     ),
-                    Text(
+                    const Text(
                       '哆啦B梦，你的百宝箱',
                       style: TextStyle(
                         color: Color.fromRGBO(0, 0, 0, .6),
@@ -82,35 +105,6 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ],
                 )),
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 20, right: 10),
-            // margin: EdgeInsets.only(), // 设置外边距
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.clear,
-                    size: 24,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    // 回退
-                  },
-                ),
-                TextButton(
-                  onPressed: () {
-                    // 在此处添加点击事件的处理逻辑
-                    print('TextButton 被点击了！');
-                  },
-                  child: Text(
-                    '帮助与设置',
-                    style: TextStyle(fontSize: 14, color: Colors.black),
-                  ),
-                )
-              ],
-            ),
           ),
           Center(
               child: Column(
@@ -152,8 +146,8 @@ class _LoginPageState extends State<LoginPage> {
                             height: 24, // 设置图像的高度
                             color: Colors.white, // 设置图像的颜色
                           ),
-                          SizedBox(width: 8),
-                          Text(
+                          const SizedBox(width: 8),
+                          const Text(
                             '微信登录',
                             style: TextStyle(
                               color: Colors.white,
@@ -165,26 +159,29 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '使用手机号登录',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  Icon(
-                    Icons.chevron_right,
-                    size: 16,
-                  ),
-                ],
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, '/pwd_login'),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '使用密码登录',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    Icon(
+                      Icons.chevron_right,
+                      size: 16,
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -201,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],

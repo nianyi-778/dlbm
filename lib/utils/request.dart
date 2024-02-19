@@ -7,19 +7,23 @@ class AxiosClient {
   Dio _dio;
   late SharedPreferences storage;
 
-  void main() async {
+  Future<void> initializeStorage() async {
     storage = await localStorage();
   }
 
   AxiosClient({BaseOptions? options}) : _dio = Dio(options) {
     _dio = Dio(options ?? BaseOptions());
-    String? token = storage.getString('token');
+    initializeStorage();
 
     // 添加其他的配置，如请求拦截器、响应拦截器等
     // 设置默认的 baseUrl
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
         final apiUrl = dotenv.env['BASE_URL'];
+
+        String? token = storage.getString('token');
+
+        print('token ==> ${token}');
 
         print('API URL: $apiUrl');
         options.baseUrl = apiUrl!;

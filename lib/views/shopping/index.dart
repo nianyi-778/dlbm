@@ -1,9 +1,6 @@
-import 'package:dlbm/utils/request.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/views/home/components/ShoppingItem.dart';
 import 'package:dlbm/views/home/components/SkeletonScreen.dart';
-// SkeletonShopping
-import 'package:flutter/material.dart';
 
 class ItemBasicInfo {
   String title;
@@ -45,56 +42,51 @@ class Shopping extends StatefulWidget {
 class _ShoppingState extends State<Shopping> {
   List<ShoppingItemType> shoppingList = [];
   bool _isLoading = true;
-  AxiosClient client = AxiosClient();
+  // TaobaoServiceImpl taobaoServiceImpl = TaobaoServiceImpl();
   GlobalKey<RefreshIndicatorState> refreshKey =
       GlobalKey<RefreshIndicatorState>();
 
   @override
   void initState() {
     super.initState();
-    loadJsonData();
-    setState(() {
-      _isLoading = false;
-    });
-    refreshKey.currentState?.show();
+    // loadJsonData();
+    // setState(() {
+    //   _isLoading = false;
+    // });
+    // refreshKey.currentState?.show();
   }
 
   Future<void> _refreshData() async {
-    await loadJsonData();
+    // await loadJsonData();
   }
 
-  Future<void> loadJsonData() async {
-    Map<String, dynamic> response = await client.request(
-      method: 'get',
-      url:
-          'https://dt-easyv-test.oss-cn-hangzhou.aliyuncs.com/tmp/taobao_mock.json',
-      queryParameters: {'param1': 'value1', 'param2': 'value2'},
-    );
+  // Future<void> loadJsonData() async {
+  //   Map<String, dynamic> response = await taobaoServiceImpl.taobaoList();
 
-    List<ShoppingItemType> parseShoppingItemList(jsonMap) {
-      assert(jsonMap.containsKey('data'));
-      assert(jsonMap['data'].containsKey('result_list'));
-      assert(jsonMap['data']['result_list'].containsKey('map_data'));
+  //   List<ShoppingItemType> parseShoppingItemList(jsonMap) {
+  //     assert(jsonMap.containsKey('data'));
+  //     assert(jsonMap['data'].containsKey('result_list'));
+  //     assert(jsonMap['data']['result_list'].containsKey('map_data'));
 
-      List<ShoppingItemType?> jsonList = List<Map<String, dynamic>>.from(
-              jsonMap['data']['result_list']['map_data'])
-          .map((json) {
-        try {
-          return ShoppingItemType.fromJson(json as Map<String, dynamic>);
-        } catch (e) {
-          print('Failed to convert JSON object: $json');
-        }
-        return null;
-      }).toList();
+  //     List<ShoppingItemType?> jsonList = List<Map<String, dynamic>>.from(
+  //             jsonMap['data']['result_list']['map_data'])
+  //         .map((json) {
+  //       try {
+  //         return ShoppingItemType.fromJson(json as Map<String, dynamic>);
+  //       } catch (e) {
+  //         print('Failed to convert JSON object: $json');
+  //       }
+  //       return null;
+  //     }).toList();
 
-      return jsonList.whereType<ShoppingItemType>().toList();
-    }
+  //     return jsonList.whereType<ShoppingItemType>().toList();
+  //   }
 
-    setState(() {
-      shoppingList = parseShoppingItemList(response);
-    });
-    print('shoppingList');
-  }
+  //   setState(() {
+  //     shoppingList = parseShoppingItemList(response);
+  //   });
+  //   print('shoppingList');
+  // }
 
   @override
   Widget build(BuildContext context) {

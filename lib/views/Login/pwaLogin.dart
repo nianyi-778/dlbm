@@ -11,7 +11,7 @@ class PwaLoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<PwaLoginPage> {
-  UserServiceImpl userServiceImpl = new UserServiceImpl();
+  UserServiceImpl userServiceImpl = UserServiceImpl();
   bool _obscureText = true;
   TextEditingController _accController = TextEditingController();
   TextEditingController _pwdController = TextEditingController();
@@ -24,7 +24,7 @@ class _LoginPageState extends State<PwaLoginPage> {
   @override
   void initState() {
     super.initState();
-    print('init login');
+    print('init pwd_login');
     setStatusBarStyle(Colors.white, Colors.black);
     _accController.addListener(_handleAccountChange);
     _pwdController.addListener(_handlePwdChange);
@@ -41,7 +41,7 @@ class _LoginPageState extends State<PwaLoginPage> {
 
     _focusUserNode.dispose();
     _focusPasswordNode.dispose();
-    print('dispose login');
+    print('dispose pwd_login');
   }
 
   void _handleAccountChange() {

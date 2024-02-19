@@ -1,3 +1,4 @@
+import 'package:dlbm/views/Login/index.dart';
 import 'package:dlbm/views/Login/pwaLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/views/index.dart';
@@ -11,11 +12,12 @@ class RouteConfiguration {
         return CupertinoPageRoute(builder: (_) => const MainPage());
       case '/about':
         return CupertinoPageRoute(builder: (_) => const About());
+      case '/pwd_login':
+        return CupertinoPageRoute(builder: (_) => const PwaLoginPage());
       case '/login':
-        // return CupertinoPageRoute(builder: (_) => const LoginPage());
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
-              const PwaLoginPage(),
+              const LoginPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             var begin = Offset(0.0, 1.0);
             var end = Offset.zero;
