@@ -67,7 +67,8 @@ class _LoginPageState extends State<PwaLoginPage> {
         gravity: ToastGravity.CENTER,
       );
     } else {
-      Navigator.pop(context);
+      Navigator.pushNamed(context, '/');
+      // Navigator.pop(context);
       // 登录成功
       print(result);
     }

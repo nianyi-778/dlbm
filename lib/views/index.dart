@@ -1,3 +1,4 @@
+import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/components/CustomBottomNavigationBar.dart';
 
@@ -5,6 +6,7 @@ import 'package:dlbm/views/home/index.dart';
 import 'package:dlbm/views/my/index.dart';
 import 'package:dlbm/views/shopping/index.dart';
 import 'package:dlbm/views/toolbox/index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -28,8 +30,10 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-  onTap(index) {
-    if (index == 3) {
+  onTap(index) async {
+    SharedPreferences storage = await localStorage();
+    String? token = storage.getString('token');
+    if (index == 3 && token == null) {
       Navigator.pushNamed(context, '/login');
     } else {
       setState(() {

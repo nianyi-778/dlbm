@@ -25,30 +25,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.clear,
-              size: 24,
-            ), // 返回按钮的图标
-            onPressed: () {
-              // 返回按钮的点击事件
-              Navigator.pop(context);
-            },
-          ),
-          title: null, // 设置为null，不显示标题
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // 在此处添加点击事件的处理逻辑
-                print('TextButton 被点击了！');
-              },
-              child: const Text(
-                '帮助与设置',
-                style: TextStyle(fontSize: 14, color: Colors.black),
-              ),
-            )
-          ]),
       body: Stack(
         children: [
           FractionallySizedBox(
@@ -106,6 +82,31 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 )),
           ),
+          AppBar(
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.clear,
+                  size: 24,
+                ), // 返回按钮的图标
+                onPressed: () {
+                  // 返回按钮的点击事件
+                  Navigator.pop(context);
+                },
+              ),
+              title: null, // 设置为null，不显示标题
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    // 在此处添加点击事件的处理逻辑
+                    print('TextButton 被点击了！');
+                  },
+                  child: const Text(
+                    '帮助与设置',
+                    style: TextStyle(fontSize: 14, color: Colors.black),
+                  ),
+                )
+              ]),
           Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
