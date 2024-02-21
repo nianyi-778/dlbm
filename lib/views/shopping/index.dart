@@ -63,29 +63,31 @@ class _ShoppingState extends State<Shopping> {
   }
 
   Future<void> loadJsonData() async {
-    Map<String, dynamic> response = await taobaoServiceImpl.taobaoList();
-    List<ShoppingItemType> parseShoppingItemList(jsonMap) {
-      assert(jsonMap.containsKey('result_list'));
-      assert(jsonMap['result_list'].containsKey('map_data'));
+    dynamic response = await taobaoServiceImpl.taobaoList();
+    if (response != null) {
+      List<ShoppingItemType> parseShoppingItemList(jsonMap) {
+        assert(jsonMap.containsKey('result_list'));
+        assert(jsonMap['result_list'].containsKey('map_data'));
 
-      List<ShoppingItemType?> jsonList =
-          List<Map<String, dynamic>>.from(jsonMap['result_list']['map_data'])
-              .map((json) {
-        try {
-          return ShoppingItemType.fromJson(json as Map<String, dynamic>);
-        } catch (e) {
-          print('Failed to convert JSON object: $json');
-        }
-        return null;
-      }).toList();
+        List<ShoppingItemType?> jsonList =
+            List<Map<String, dynamic>>.from(jsonMap['result_list']['map_data'])
+                .map((json) {
+          try {
+            return ShoppingItemType.fromJson(json as Map<String, dynamic>);
+          } catch (e) {
+            print('Failed to convert JSON object: $json');
+          }
+          return null;
+        }).toList();
 
-      return jsonList.whereType<ShoppingItemType>().toList();
+        return jsonList.whereType<ShoppingItemType>().toList();
+      }
+
+      setState(() {
+        shoppingList = parseShoppingItemList(response);
+      });
+      print('shoppingList');
     }
-
-    setState(() {
-      shoppingList = parseShoppingItemList(response);
-    });
-    print('shoppingList');
   }
 
   @override
