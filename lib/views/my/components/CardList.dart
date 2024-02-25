@@ -1,3 +1,4 @@
+import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -6,19 +7,25 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void exitLogin() {
+      localStorage().then((storage) => storage.remove('token'));
+      print('remove token');
+      Navigator.pushReplacementNamed(context, '/login');
+    }
+
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
       margin: const EdgeInsets.symmetric(vertical: 24),
       child: Column(
-        children: const [
-          CardItem(name: '我的收藏'),
-          CardItem(name: '我的问答'),
-          CardItem(name: '问题反馈'),
-          CardItem(name: '关于我的', link: "/about")
+        children: [
+          CardItem(name: '我的收藏', iconData: Icons.enhanced_encryption),
+          CardItem(name: '我的问答', iconData: Icons.hail),
+          CardItem(name: '问题反馈', iconData: Icons.connect_without_contact),
+          CardItem(name: '关于我的', link: "/about", iconData: Icons.emoji_people),
+          CardItem(
+              name: '退出登录', iconData: Icons.accessible_forward, fn: exitLogin)
         ],
       ),
     );
@@ -29,23 +36,32 @@ class CardList extends StatelessWidget {
 class CardItem extends StatelessWidget {
   final String name;
   final String? link;
-  const CardItem({required this.name, this.link});
+  final IconData? iconData;
+  final Function? fn;
+  const CardItem({required this.name, this.link, this.iconData, this.fn});
+
+  void callback(context) {
+    if (link != null) {
+      Navigator.pushNamed(context, link!);
+    } else {
+      if (name.isNotEmpty) {
+        Fluttertoast.showToast(
+          msg: name,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          if (link != null) {
-            Navigator.pushNamed(context, link!);
-          } else {
-            if (name.isNotEmpty) {
-              Fluttertoast.showToast(
-                msg: name,
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.CENTER,
-              );
-            }
+          if (fn != null) {
+            fn!();
           }
+          callback(context);
         },
         child: Container(
           height: 54,
@@ -58,7 +74,7 @@ class CardItem extends StatelessWidget {
                     Container(
                       width: 30,
                       height: 30,
-                      color: Colors.amber,
+                      child: Icon(iconData),
                     ),
                     Padding(
                         padding: const EdgeInsets.only(left: 10), // 设置边距为10

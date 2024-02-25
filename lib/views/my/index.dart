@@ -1,8 +1,6 @@
-import 'package:dlbm/views/Login/index.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/views/my/components/Header.dart';
 import 'package:dlbm/views/my/components/CardList.dart';
-import 'package:flutter/services.dart';
 
 class MyApp extends StatefulWidget {
   // const HomePage({super.key, required this.title});

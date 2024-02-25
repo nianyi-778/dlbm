@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,4 +17,10 @@ void setStatusBarStyle(Color backgroundColor, Color fontColor) {
 Future<SharedPreferences> localStorage() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs;
+}
+
+int getNavigationStackLength(BuildContext context) {
+  NavigatorState navigatorState = Navigator.of(context);
+  int stackLength = navigatorState.widget.pages.length;
+  return stackLength;
 }

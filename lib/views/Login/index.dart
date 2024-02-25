@@ -91,7 +91,12 @@ class _LoginPageState extends State<LoginPage> {
                 ), // 返回按钮的图标
                 onPressed: () {
                   // 返回按钮的点击事件
-                  Navigator.pop(context);
+                  print(Navigator.canPop(context));
+                  if (Navigator.canPop(context)) {
+                    Navigator.pop(context);
+                  } else {
+                    Navigator.pushReplacementNamed(context, '/');
+                  }
                 },
               ),
               title: null, // 设置为null，不显示标题

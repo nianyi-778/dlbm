@@ -20,6 +20,7 @@ class _LoginPageState extends State<PwaLoginPage> {
   // 创建一个 FocusNode 对象来管理焦点
   FocusNode _focusUserNode = FocusNode();
   FocusNode _focusPasswordNode = FocusNode();
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -56,10 +57,27 @@ class _LoginPageState extends State<PwaLoginPage> {
     });
   }
 
+  void navigateBackOrHome(BuildContext context) {
+    int count = 0;
+    Navigator.popUntil(context, (route) {
+      if (Navigator.canPop(context)) {
+        count++;
+        return count > 2;
+      }
+      return true;
+    });
+  }
+
   void _handleLogin() async {
+    setState(() {
+      isLoading = true;
+    });
     // 处理按钮点击事件
     dynamic result = await userServiceImpl.login(_userName, _password);
     if (result == null) {
+      setState(() {
+        isLoading = false;
+      });
       // 登录失败
       Fluttertoast.showToast(
         msg: '账号或密码错误，请检查后重试！',
@@ -67,7 +85,9 @@ class _LoginPageState extends State<PwaLoginPage> {
         gravity: ToastGravity.CENTER,
       );
     } else {
-      Navigator.pushNamed(context, '/');
+      navigateBackOrHome(context);
+      // Navigator.popUntil(context, (route) => route.isFirst);
+      // Navigator.pushNamed(context, '/');
       // Navigator.pop(context);
       // 登录成功
       print(result);
@@ -122,6 +142,7 @@ class _LoginPageState extends State<PwaLoginPage> {
                     height: 30,
                   ),
                   TextField(
+                    enabled: !isLoading,
                     focusNode: _focusUserNode, // 设置 TextField 的焦点节点
                     controller: _accController,
                     decoration: const InputDecoration(
@@ -144,6 +165,7 @@ class _LoginPageState extends State<PwaLoginPage> {
                     ),
                   ),
                   TextField(
+                    enabled: !isLoading,
                     focusNode: _focusPasswordNode, // 设置 TextField 的焦点节点
                     controller: _pwdController,
                     obscureText: _obscureText, // 设置密码输入框
@@ -195,7 +217,8 @@ class _LoginPageState extends State<PwaLoginPage> {
                     size: Size(MediaQuery.of(context).size.width * 0.8,
                         45), // 设置按钮的宽度和高度
                     child: ElevatedButton(
-                      onPressed: _isDisabled ? _handleLogin : null,
+                      onPressed:
+                          _isDisabled || !isLoading ? _handleLogin : null,
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: _isDisabled
@@ -206,10 +229,18 @@ class _LoginPageState extends State<PwaLoginPage> {
                           borderRadius: BorderRadius.circular(8.0), // 设置按钮的圆角
                         ),
                       ),
-                      child: const Text(
-                        '确认登录',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      child: isLoading
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            )
+                          : const Text(
+                              '确认登录',
+                              style: TextStyle(color: Colors.white),
+                            ),
                     ),
                   )
                 ],
