@@ -24,14 +24,15 @@ class UserServiceImpl implements UserService {
     return result;
   }
 
-  // @override
-  // Future<List<User>> getAllUsers() {
-  //   // 实现获取所有用户的逻辑
-  //   return [];
-  // }
+  @override
+  Future<bool> verify() async {
+    // 实现获取用户的逻辑
+    bool result = await client.request(
+      method: "post",
+      url: '/auth/verify',
+    );
+    return result;
+  }
 
-  // @override
-  // Future<void> saveUser(User user) {
-  //   // 实现保存用户的逻辑
-  // }
+  // verify
 }

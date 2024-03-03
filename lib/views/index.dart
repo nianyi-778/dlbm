@@ -1,7 +1,7 @@
 import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/components/CustomBottomNavigationBar.dart';
-
+import 'package:dlbm/services/user/user_impl.dart';
 import 'package:dlbm/views/home/index.dart';
 import 'package:dlbm/views/my/index.dart';
 import 'package:dlbm/views/shopping/index.dart';
@@ -17,11 +17,26 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
+  UserServiceImpl userServiceImpl = UserServiceImpl();
 
   @override
   void initState() {
     print('home mount');
     super.initState();
+    checkToken(context);
+  }
+
+  void checkToken(context) async {
+    SharedPreferences storage = await localStorage();
+    String? token = storage.getString('token');
+    if (token != null) {
+      bool isEffective = await userServiceImpl.verify(); // 是否有效
+      print('check token result ==> ${isEffective}');
+      if (!isEffective) {
+        storage.remove('token');
+        Navigator.pushNamed(context, '/login');
+      }
+    }
   }
 
   @override
@@ -30,7 +45,7 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-  onTap(index) async {
+  onTap(int index, context) async {
     SharedPreferences storage = await localStorage();
     String? token = storage.getString('token');
     if (index == 3 && token == null) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-typedef GetIndexCallback = void Function(int index);
+typedef GetIndexCallback = void Function(int index, BuildContext context);
 
 class CustomBottomNavigationBar extends StatefulWidget {
   int currentIndex = 0;
@@ -16,9 +16,13 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _BottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
+    void onClick(int index) {
+      widget.onTap(index, context);
+    }
+
     return SalomonBottomBar(
       currentIndex: widget.currentIndex,
-      onTap: widget.onTap,
+      onTap: onClick,
       items: [
         /// Home
         SalomonBottomBarItem(

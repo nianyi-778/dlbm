@@ -3,6 +3,7 @@ abstract class UserService {
   // Future<List<User>> getAllUsers();
   // Future<void> saveUser(User user);
   Future<dynamic> login(String username, String password);
+  Future<bool> verify();
 }
 
 class User {
