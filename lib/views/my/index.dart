@@ -3,8 +3,8 @@ import 'package:dlbm/views/my/components/Header.dart';
 import 'package:dlbm/views/my/components/CardList.dart';
 
 class MyApp extends StatefulWidget {
-  // const HomePage({super.key, required this.title});
-  const MyApp({super.key});
+  final Function(int) onUpdateIndex;
+  const MyApp({Key? key, required this.onUpdateIndex}) : super(key: key);
 
   // final String title;
 
@@ -36,24 +36,19 @@ class _MyHomePageState extends State<MyApp> {
           toolbarHeight: 0,
           backgroundColor: Colors.white,
         ), // 隐
-        body: const UserInfo());
-  }
-}
-
-class UserInfo extends StatelessWidget {
-  const UserInfo({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(15, 25, 15, 15),
-      width: double.infinity,
-      color: Colors.transparent,
-      child: const SafeArea(
-        child: Column(
-          children: [MyHeader(), CardList()],
-        ),
-      ),
-    );
+        body: Container(
+          margin: const EdgeInsets.fromLTRB(15, 25, 15, 15),
+          width: double.infinity,
+          color: Colors.transparent,
+          child: SafeArea(
+            child: Column(
+              children: [
+                const MyHeader(),
+                CardList(onUpdateIndex: widget.onUpdateIndex)
+              ],
+            ),
+          ),
+        ));
   }
 }
 

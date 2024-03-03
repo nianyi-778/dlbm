@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CardList extends StatelessWidget {
-  const CardList({super.key});
+  final Function(int) onUpdateIndex;
+  const CardList({Key? key, required this.onUpdateIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     void exitLogin() {
       localStorage().then((storage) => storage.remove('token'));
+      onUpdateIndex(0); // 修改
       print('remove token');
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushNamed(context, '/login');
     }
 
     return Container(
@@ -20,10 +22,11 @@ class CardList extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 24),
       child: Column(
         children: [
-          CardItem(name: '我的收藏', iconData: Icons.enhanced_encryption),
-          CardItem(name: '我的问答', iconData: Icons.hail),
-          CardItem(name: '问题反馈', iconData: Icons.connect_without_contact),
-          CardItem(name: '关于我的', link: "/about", iconData: Icons.emoji_people),
+          const CardItem(name: '我的收藏', iconData: Icons.enhanced_encryption),
+          const CardItem(name: '我的问答', iconData: Icons.hail),
+          const CardItem(name: '问题反馈', iconData: Icons.connect_without_contact),
+          const CardItem(
+              name: '关于我的', link: "/about", iconData: Icons.emoji_people),
           CardItem(
               name: '退出登录', iconData: Icons.accessible_forward, fn: exitLogin)
         ],

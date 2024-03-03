@@ -19,6 +19,12 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
   UserServiceImpl userServiceImpl = UserServiceImpl();
 
+  void onUpdateIndex(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   @override
   void initState() {
     print('home mount');
@@ -45,27 +51,24 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-  onTap(int index, context) async {
+  void onTap(int index, context) async {
     SharedPreferences storage = await localStorage();
     String? token = storage.getString('token');
     if (index == 3 && token == null) {
       Navigator.pushNamed(context, '/login');
     } else {
-      setState(() {
-        currentIndex = index;
-      });
+      onUpdateIndex(index);
     }
   }
 
-  final List<Widget> _children = const [
-    HomePage(),
-    Toolbox(),
-    Shopping(),
-    MyApp(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _children = [
+      const HomePage(),
+      const Toolbox(),
+      const Shopping(),
+      MyApp(onUpdateIndex: onUpdateIndex),
+    ];
     return Scaffold(
       bottomNavigationBar:
           CustomBottomNavigationBar(onTap: onTap, currentIndex: currentIndex),
