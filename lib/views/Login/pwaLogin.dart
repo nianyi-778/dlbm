@@ -1,10 +1,13 @@
 import 'package:dlbm/services/user/user_impl.dart';
 import 'package:dlbm/utils/utils.dart';
+import 'package:dlbm/views/Login/index.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class PwaLoginPage extends StatefulWidget {
-  const PwaLoginPage({Key? key}) : super(key: key);
+  final Function(PageState) updatePageState;
+  const PwaLoginPage({Key? key, required this.updatePageState})
+      : super(key: key);
 
   @override
   State<PwaLoginPage> createState() => _LoginPageState();
@@ -57,17 +60,6 @@ class _LoginPageState extends State<PwaLoginPage> {
     });
   }
 
-  void navigateBackOrHome(BuildContext context) {
-    int count = 0;
-    Navigator.popUntil(context, (route) {
-      if (Navigator.canPop(context)) {
-        count++;
-        return count > 2;
-      }
-      return true;
-    });
-  }
-
   void _handleLogin() async {
     setState(() {
       isLoading = true;
@@ -85,10 +77,7 @@ class _LoginPageState extends State<PwaLoginPage> {
         gravity: ToastGravity.CENTER,
       );
     } else {
-      navigateBackOrHome(context);
-      // Navigator.popUntil(context, (route) => route.isFirst);
-      // Navigator.pushNamed(context, '/');
-      // Navigator.pop(context);
+      Navigator.pop(context);
       // 登录成功
       print(result);
     }
@@ -114,7 +103,7 @@ class _LoginPageState extends State<PwaLoginPage> {
               icon: const Icon(Icons.arrow_back), // 返回按钮的图标
               onPressed: () {
                 // 返回按钮的点击事件
-                Navigator.pop(context);
+                widget.updatePageState(PageState.password);
               },
             ),
             title: null, // 设置为null，不显示标题
