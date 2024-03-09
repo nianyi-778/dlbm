@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CardList extends StatelessWidget {
-  final Function(int) onUpdateIndex;
+  final Function() onUpdateIndex;
   const CardList({Key? key, required this.onUpdateIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    void exitLogin() {
+    void exitLogin() async {
       localStorage().then((storage) => storage.remove('token'));
-      onUpdateIndex(0); // 修改
+      onUpdateIndex(); // back
       print('remove token');
       Navigator.pushNamed(context, '/login');
     }

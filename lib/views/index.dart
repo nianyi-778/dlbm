@@ -16,13 +16,19 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentIndex = 0;
+  List<int> currents = [0];
   UserServiceImpl userServiceImpl = UserServiceImpl();
 
   void onUpdateIndex(int index) {
-    setState(() {
-      currentIndex = index;
-    });
+    if (currents.last != index) {
+      currents.add(index);
+      List<int> lastTwo = currents.length >= 2
+          ? currents.sublist(currents.length - 2)
+          : currents;
+      setState(() {
+        currents = lastTwo;
+      });
+    }
   }
 
   @override
@@ -61,19 +67,37 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+/**
+ * @退出登录
+ * */
+  void onBackBar() {
+    if (currents.last == 3 && currents.first != 3) {
+      // 删除last
+      setState(() {
+        currents = [currents.first];
+      });
+    } else {
+      setState(() {
+        currents = [0];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _children = [
       const HomePage(),
       const Toolbox(),
       const Shopping(),
-      MyApp(onUpdateIndex: onUpdateIndex),
+      MyApp(onUpdateIndex: onBackBar),
     ];
+    int lastIndex = currents.last;
+    // currents
     return Scaffold(
       bottomNavigationBar:
-          CustomBottomNavigationBar(onTap: onTap, currentIndex: currentIndex),
+          CustomBottomNavigationBar(onTap: onTap, currentIndex: lastIndex),
       body: IndexedStack(
-        index: currentIndex,
+        index: lastIndex,
         children: _children,
       ),
     );

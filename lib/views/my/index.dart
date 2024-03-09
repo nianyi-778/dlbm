@@ -3,7 +3,7 @@ import 'package:dlbm/views/my/components/Header.dart';
 import 'package:dlbm/views/my/components/CardList.dart';
 
 class MyApp extends StatefulWidget {
-  final Function(int) onUpdateIndex;
+  final Function() onUpdateIndex;
   const MyApp({Key? key, required this.onUpdateIndex}) : super(key: key);
 
   // final String title;
