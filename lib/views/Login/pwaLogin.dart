@@ -2,7 +2,6 @@ import 'package:dlbm/services/user/user_impl.dart';
 import 'package:dlbm/utils/utils.dart';
 import 'package:dlbm/views/Login/index.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class PwaLoginPage extends StatefulWidget {
   final Function(PageState) updatePageState;
@@ -71,13 +70,10 @@ class _LoginPageState extends State<PwaLoginPage> {
         isLoading = false;
       });
       // 登录失败
-      Fluttertoast.showToast(
-        msg: '账号或密码错误，请检查后重试！',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-      );
+      ToastCenter('账号或密码错误，请检查后重试！');
     } else {
       Navigator.pop(context);
+      ToastCenter('登录成功');
       // 登录成功
       print(result);
     }

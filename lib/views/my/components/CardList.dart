@@ -13,6 +13,9 @@ class CardList extends StatelessWidget {
       onUpdateIndex(); // back
       print('remove token');
       Navigator.pushNamed(context, '/login');
+      Fluttertoast.showToast(
+        msg: '退出登录',
+      );
     }
 
     return Container(
@@ -48,11 +51,7 @@ class CardItem extends StatelessWidget {
       Navigator.pushNamed(context, link!);
     } else {
       if (name.isNotEmpty) {
-        Fluttertoast.showToast(
-          msg: name,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-        );
+        print(name);
       }
     }
   }
