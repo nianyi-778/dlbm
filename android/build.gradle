@@ -1,7 +1,7 @@
 allprojects {
     repositories {
-//        google()
-//        mavenCentral()
+    //    google()
+    //    mavenCentral()
         maven { url 'https://maven.aliyun.com/repository/google'
             allowInsecureProtocol = true
         }
@@ -26,6 +26,3 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
-
-
-
