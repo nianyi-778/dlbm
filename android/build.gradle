@@ -1,19 +1,24 @@
 allprojects {
+
     repositories {
-    //    google()
-    //    mavenCentral()
-        maven { url 'https://maven.aliyun.com/repository/google'
-            allowInsecureProtocol = true
-        }
-        maven { url 'https://maven.aliyun.com/repository/jcenter'
-            allowInsecureProtocol = true
-        }
-        maven {
-            url 'http://maven.aliyun.com/nexus/content/groups/public'
-            allowInsecureProtocol = true
-        }
+       google()
+       mavenCentral()
     }
+
 }
+
+// buildscript {
+//     ext.kotlin_version = '1.6.10'
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+
+//     dependencies {
+//         classpath 'com.android.tools.build:gradle:4.1.0'
+//         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//     }
+// }
 
 rootProject.buildDir = '../build'
 subprojects {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dlbm/views/index.dart';
 import 'package:dlbm/views/about/index.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:dlbm/views/wireguard/index.dart';
 
 class RouteConfiguration {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -31,8 +32,8 @@ class RouteConfiguration {
             );
           },
         );
-      // case '/toolbox':
-      //   return MaterialPageRoute(builder: (_) => const Toolbox());
+      case '/vpn':
+        return CupertinoPageRoute(builder: (_) => const MyWireguard());
       default:
         return CupertinoPageRoute(
           builder: (_) => Scaffold(

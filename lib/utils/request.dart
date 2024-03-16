@@ -29,6 +29,7 @@ class AxiosClient {
         options.baseUrl = apiUrl!;
         // 添加其他请求头
         options.headers['x-client-type'] = 'android';
+        options.headers['Cookie'] = 'Authorization=$token';
         options.headers['Authorization'] = 'Bearer $token';
         handler.next(options);
       },

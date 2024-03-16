@@ -27,11 +27,13 @@ class UserServiceImpl implements UserService {
   @override
   Future<bool> verify() async {
     // 实现获取用户的逻辑
-    bool result = await client.request(
+    dynamic result = await client.request(
       method: "post",
       url: '/auth/verify',
     );
-    return result;
+    print(result);
+    print('verify');
+    return !!result;
   }
 
   // verify

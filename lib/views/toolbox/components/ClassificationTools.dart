@@ -5,13 +5,16 @@ class Item {
   final String title;
   final IconData icon;
   final Color bgColor;
+  final String? link;
   final String description;
 
-  Item(
-      {required this.title,
-      required this.bgColor,
-      required this.description,
-      required this.icon});
+  Item({
+    required this.title,
+    required this.bgColor,
+    this.link,
+    required this.description,
+    required this.icon,
+  });
 }
 
 class ClassificationTools extends StatefulWidget {
@@ -35,6 +38,12 @@ class _ClassificationToolsState extends State<ClassificationTools> {
         description: '给你不一样的身份',
         icon: Icons.face_retouching_natural,
         bgColor: const Color.fromRGBO(215, 123, 21, 0.84)),
+    Item(
+        title: 'VPN',
+        link: '/vpn',
+        description: '想你所想',
+        icon: Icons.face_retouching_natural,
+        bgColor: Color.fromARGB(212, 63, 160, 107)),
   ];
 
   @override
@@ -76,7 +85,9 @@ class _ClassificationToolsState extends State<ClassificationTools> {
                 if (person.title.isNotEmpty) {
                   return InkWell(
                     onTap: () {
-                      print(person.title);
+                      if (person.link != null && person.link!.isNotEmpty) {
+                        Navigator.pushNamed(context, person.link as String);
+                      }
                     },
                     child: Container(
                         decoration: BoxDecoration(
