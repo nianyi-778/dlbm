@@ -34,6 +34,8 @@ class _MyHomePageState extends State<About> {
           ),
           centerTitle: true,
         ),
-        body: Container(child: Text('关于我的')));
+        body: Container(
+            padding: EdgeInsets.all(16.0), // 设置四个方向的内边距为16.0,
+            child: Text('平平无奇程序员')));
   }
 }

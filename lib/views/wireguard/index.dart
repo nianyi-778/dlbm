@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
@@ -11,11 +12,32 @@ class MyWireguard extends StatefulWidget {
   State<MyWireguard> createState() => _MyAppState();
 }
 
+enum VpnStage {
+  preparing,
+  connecting,
+  connected,
+  disconnected,
+  initial,
+}
+
 class _MyAppState extends State<MyWireguard> {
   final wireguard = WireGuardFlutter.instance;
 
   late String name;
   bool _isSwitched = false;
+  VpnStage vpnState = VpnStage.initial;
+
+  Map<VpnStage, String> vpnStatusMap = {
+    VpnStage.preparing: '准备连接VPN',
+    VpnStage.connecting: '正在连接VPN',
+    VpnStage.connected: 'VPN已成功连接',
+    VpnStage.disconnected: 'VPN已断开连接',
+    VpnStage.initial: '正在初始化...',
+  };
+
+  String getStatusDescription(VpnStage status) {
+    return vpnStatusMap[status] ?? '未知状态';
+  }
 
   @override
   void initState() {
@@ -23,13 +45,23 @@ class _MyAppState extends State<MyWireguard> {
     wireguard.vpnStageSnapshot.listen((event) {
       debugPrint("status changed $event");
       if (mounted) {
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('status changed: $event'),
-        ));
+        setState(() {
+          event as VpnStage;
+        });
+        ToastCenter('status changed: $event');
       }
     });
     name = 'dlbm_vpn';
+    // 延迟执行操作
+    Future.delayed(Duration(seconds: 2), () {
+      initialize();
+    });
+  }
+
+  void dispose() {
+    print('vpn unmount');
+    super.dispose();
+    disconnect();
   }
 
   Future<void> initialize() async {
@@ -67,9 +99,7 @@ class _MyAppState extends State<MyWireguard> {
     debugPrint("stage: $stage");
 
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('stage: $stage'),
-      ));
+      ToastCenter('stage: $stage');
     }
   }
 
@@ -94,6 +124,7 @@ class _MyAppState extends State<MyWireguard> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(height: 20),
               Transform.scale(
                   scale: 2.0, // 设置缩放比例，可以根据需要进行调整
                   child: CupertinoSwitch(
@@ -102,14 +133,17 @@ class _MyAppState extends State<MyWireguard> {
                       setState(() {
                         _isSwitched = value;
                       });
-                      startVpn();
+                      if (value == true) {
+                        startVpn();
+                      } else {
+                        disconnect();
+                      }
                     },
                     activeColor: CupertinoColors.activeBlue,
                     trackColor: Colors.black.withOpacity(.5),
                   )),
-              const SizedBox(
-                height: 200,
-              )
+              const SizedBox(height: 20),
+              Text(getStatusDescription(vpnState))
             ],
           ),
         )));

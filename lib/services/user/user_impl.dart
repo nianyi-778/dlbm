@@ -31,9 +31,10 @@ class UserServiceImpl implements UserService {
       method: "post",
       url: '/auth/verify',
     );
-    print(result);
-    print('verify');
-    return !!result;
+    if (result is bool) {
+      return result;
+    }
+    return false;
   }
 
   // verify
