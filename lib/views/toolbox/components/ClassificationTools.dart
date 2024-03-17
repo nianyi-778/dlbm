@@ -31,6 +31,7 @@ class _ClassificationToolsState extends State<ClassificationTools> {
     Item(
         title: '抖音去水印',
         description: '无损高清原视频',
+        link: "http://www.jiexiapi.top/",
         icon: Icons.image,
         bgColor: const Color.fromRGBO(64, 149, 229, 0.84)),
     Item(
@@ -41,8 +42,8 @@ class _ClassificationToolsState extends State<ClassificationTools> {
     Item(
         title: 'VPN',
         link: '/vpn',
-        description: '想你所想',
-        icon: Icons.face_retouching_natural,
+        description: '翻墙术、想你所想',
+        icon: Icons.accessible_forward,
         bgColor: Color.fromARGB(212, 63, 160, 107)),
   ];
 

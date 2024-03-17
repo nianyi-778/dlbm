@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:dlbm/utils/utils.dart';
-import 'package:dlbm/views/wireguard/components/WaterRipple.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dlbm/views/wireguard/components/CountdownTimer.dart';
+import 'package:dlbm/views/wireguard/components/waterrepper.dart';
 import 'package:flutter/material.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
 
@@ -15,21 +14,20 @@ class MyWireguard extends StatefulWidget {
 
 class _MyAppState extends State<MyWireguard> {
   final wireguard = WireGuardFlutter.instance;
-
   late String name;
   bool _isSwitched = false;
   VpnStage vpnState = VpnStage.noConnection;
-
+  DateTime connectedDate = DateTime.now();
   Map<VpnStage, String> vpnStageMap = {
-    VpnStage.connecting: "接口正在连接",
-    VpnStage.connected: "接口已连接",
+    VpnStage.connecting: "接口正在连接", // 1
+    VpnStage.connected: "接口已连接", // 1
     VpnStage.disconnecting: "接口正在断开连接",
     VpnStage.disconnected: "接口已断开连接",
     VpnStage.waitingConnection: "等待用户交互",
     VpnStage.authenticating: "向服务器进行身份验证",
     VpnStage.reconnect: "重新连接接口",
     VpnStage.noConnection: "尚未建立任何连接",
-    VpnStage.preparing: "准备连接",
+    VpnStage.preparing: "准备连接", // 1
     VpnStage.denied: "连接已被系统拒绝",
     VpnStage.exiting: "退出界面",
   };
@@ -42,12 +40,24 @@ class _MyAppState extends State<MyWireguard> {
   @override
   void initState() {
     super.initState();
+
     wireguard.vpnStageSnapshot.listen((event) async {
-      debugPrint("status changed $event");
+      print("vpn 状态 $event");
+
       if (mounted) {
         setState(() {
           vpnState = event;
         });
+        // if ([VpnStage.connected, VpnStage.preparing, VpnStage.connecting]
+        //     .contains(event)) {
+        //   setState(() {
+        //     _isSwitched = true;
+        //   });
+        // } else {
+        //   setState(() {
+        //     _isSwitched = false;
+        //   });
+        // }
       }
     });
     name = 'dlbm_vpn';
@@ -68,24 +78,14 @@ class _MyAppState extends State<MyWireguard> {
     }
   }
 
-  // Future<void> getStatus() async {
-  //   debugPrint("getting stage");
-  //   final stage = await wireguard.stage();
-  //   debugPrint("stage: $stage");
-
-  //   if (mounted) {
-  //     ToastCenter('stage: $stage');
-  //   }
-  // }
-
   void startVpn() async {
     try {
       await initialize();
-      // await wireguard.startVpn(
-      //   serverAddress: '188.114.96.7:7152',
-      //   wgQuickConfig: conf,
-      //   providerBundleIdentifier: 'com.dlbm.wireguardvpn.WGExtension',
-      // );
+      await wireguard.startVpn(
+        serverAddress: '188.114.96.7:7152',
+        wgQuickConfig: conf,
+        providerBundleIdentifier: 'com.dlbm.wireguardvpn.WGExtension',
+      );
     } catch (error, stack) {
       debugPrint("failed to start $error\n$stack");
     }
@@ -117,34 +117,48 @@ class _MyAppState extends State<MyWireguard> {
           constraints: const BoxConstraints.expand(),
           padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 200, width: 200, child: WaterRipple()),
-              const SizedBox(height: 20),
+              // SizedBox(height: 200, width: 200, child: const WaterRipple()),
+              // const SizedBox(height: 20),
+              const SizedBox(
+                  width: 330,
+                  height: 330,
+                  child: WaterRipple(
+                    color: Colors.green,
+                    duration: Duration(milliseconds: 2000),
+                  )),
               Transform.scale(
-                  scale: 2.0, // 设置缩放比例，可以根据需要进行调整
+                  scale: 2.0,
                   child: Switch(
                     value: _isSwitched,
                     onChanged: (value) {
+                      setState(() {
+                        _isSwitched = value;
+                      });
                       if (value == true) {
                         startVpn();
                       } else {
                         disconnect();
                       }
-                      setState(() {
-                        _isSwitched = value;
-                      });
                     },
-                    activeColor: CupertinoColors.activeBlue,
+                    activeColor: Color.fromARGB(255, 47, 161, 53),
                     inactiveThumbColor: Colors.black45,
                     inactiveTrackColor: Colors.black26,
                     trackOutlineColor:
                         MaterialStateProperty.all(Colors.transparent),
                   )),
               const SizedBox(height: 20),
-              Text(getVpnStageText()),
-              const SizedBox(height: 220),
+              Text(
+                getVpnStageText(),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.red),
+              ),
+              const SizedBox(height: 20),
+              CountdownTimer(startTime: connectedDate),
             ],
           ),
         )));
