@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:dlbm/views/wireguard/components/CountdownTimer.dart';
-import 'package:dlbm/views/wireguard/components/waterrepper.dart';
+import 'package:dlbm/views/wireguard/components/Waterrepper.dart';
 import 'package:flutter/material.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
+import 'package:flutter_vpn/flutter_vpn.dart';
 
 class MyWireguard extends StatefulWidget {
   const MyWireguard({super.key});
@@ -17,7 +18,7 @@ class _MyAppState extends State<MyWireguard> {
   late String name;
   bool _isSwitched = false;
   VpnStage vpnState = VpnStage.noConnection;
-  DateTime connectedDate = DateTime.now();
+  late DateTime? connectedDate;
   Map<VpnStage, String> vpnStageMap = {
     VpnStage.connecting: "接口正在连接", // 1
     VpnStage.connected: "接口已连接", // 1
@@ -31,6 +32,7 @@ class _MyAppState extends State<MyWireguard> {
     VpnStage.denied: "连接已被系统拒绝",
     VpnStage.exiting: "退出界面",
   };
+  bool isInitialized = false;
 
   String getVpnStageText() {
     String text = vpnStageMap[vpnState] ?? "未知状态"; // 获取对应的文案，如果找不到对应的文案，则使用默认值
@@ -43,21 +45,10 @@ class _MyAppState extends State<MyWireguard> {
 
     wireguard.vpnStageSnapshot.listen((event) async {
       print("vpn 状态 $event");
-
       if (mounted) {
         setState(() {
           vpnState = event;
         });
-        // if ([VpnStage.connected, VpnStage.preparing, VpnStage.connecting]
-        //     .contains(event)) {
-        //   setState(() {
-        //     _isSwitched = true;
-        //   });
-        // } else {
-        //   setState(() {
-        //     _isSwitched = false;
-        //   });
-        // }
       }
     });
     name = 'dlbm_vpn';
@@ -70,15 +61,32 @@ class _MyAppState extends State<MyWireguard> {
   }
 
   Future<void> initialize() async {
-    try {
-      await wireguard.initialize(interfaceName: name);
-      debugPrint("initialize success");
-    } catch (error, stack) {
-      debugPrint("failed to initialize: $error\n$stack");
+    if (isInitialized == false) {
+      try {
+        await wireguard.initialize(interfaceName: name);
+        isInitialized = true;
+        debugPrint("initialize success");
+      } catch (error, stack) {
+        isInitialized = false;
+        debugPrint("failed to initialize: $error\n$stack");
+      }
     }
   }
 
   void startVpn() async {
+    bool newState = await FlutterVpn.prepared;
+    if (newState == false) {
+      newState = await FlutterVpn.prepare();
+      // 用户主动拒绝
+      if (newState == false) {
+        // switch 状态要改false
+        setState(() {
+          _isSwitched = false;
+        });
+        return;
+      }
+    }
+
     try {
       await initialize();
       await wireguard.startVpn(
@@ -86,6 +94,9 @@ class _MyAppState extends State<MyWireguard> {
         wgQuickConfig: conf,
         providerBundleIdentifier: 'com.dlbm.wireguardvpn.WGExtension',
       );
+      setState(() {
+        connectedDate = DateTime.now();
+      });
     } catch (error, stack) {
       debugPrint("failed to start $error\n$stack");
     }
@@ -94,6 +105,9 @@ class _MyAppState extends State<MyWireguard> {
   void disconnect() async {
     try {
       await wireguard.stopVpn();
+      setState(() {
+        connectedDate = null;
+      });
     } catch (e, str) {
       debugPrint('Failed to disconnect $e\n$str');
     }
@@ -120,8 +134,6 @@ class _MyAppState extends State<MyWireguard> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // SizedBox(height: 200, width: 200, child: const WaterRipple()),
-              // const SizedBox(height: 20),
               const SizedBox(
                   width: 330,
                   height: 330,
@@ -129,6 +141,7 @@ class _MyAppState extends State<MyWireguard> {
                     color: Colors.green,
                     duration: Duration(milliseconds: 2000),
                   )),
+              const SizedBox(height: 20),
               Transform.scale(
                   scale: 2.0,
                   child: Switch(
@@ -158,7 +171,9 @@ class _MyAppState extends State<MyWireguard> {
                     color: Colors.red),
               ),
               const SizedBox(height: 20),
-              CountdownTimer(startTime: connectedDate),
+              _isSwitched
+                  ? CountdownTimer(startTime: connectedDate as DateTime)
+                  : Container(),
             ],
           ),
         )));
