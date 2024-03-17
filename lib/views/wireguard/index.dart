@@ -20,13 +20,13 @@ class _MyAppState extends State<MyWireguard> {
   VpnStage vpnState = VpnStage.noConnection;
   late DateTime? connectedDate;
   Map<VpnStage, String> vpnStageMap = {
-    VpnStage.connecting: "接口正在连接", // 1
-    VpnStage.connected: "接口已连接", // 1
-    VpnStage.disconnecting: "接口正在断开连接",
-    VpnStage.disconnected: "接口已断开连接",
+    VpnStage.connecting: "正在连接", // 1
+    VpnStage.connected: "已连接", // 1
+    VpnStage.disconnecting: "正在断开连接",
+    VpnStage.disconnected: "已断开连接",
     VpnStage.waitingConnection: "等待用户交互",
     VpnStage.authenticating: "向服务器进行身份验证",
-    VpnStage.reconnect: "重新连接接口",
+    VpnStage.reconnect: "重新连接",
     VpnStage.noConnection: "尚未建立任何连接",
     VpnStage.preparing: "准备连接", // 1
     VpnStage.denied: "连接已被系统拒绝",
