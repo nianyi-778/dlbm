@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dlbm/views/wireguard/components/CountdownTimer.dart';
 import 'package:dlbm/views/wireguard/components/Waterrepper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icmp_ping/flutter_icmp_ping.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
 import 'package:flutter_vpn/flutter_vpn.dart';
 
@@ -73,6 +74,24 @@ class _MyAppState extends State<MyWireguard> {
     }
   }
 
+  void googlePing() async {
+    try {
+      final ping = Ping(
+        'google.com',
+        count: 3,
+        timeout: 1,
+        interval: 1,
+        ipv6: false,
+        ttl: 40,
+      );
+      ping.stream.listen((event) {
+        print(event);
+      });
+    } catch (e) {
+      print('error $e');
+    }
+  }
+
   void startVpn() async {
     bool newState = await FlutterVpn.prepared;
     if (newState == false) {
@@ -94,6 +113,7 @@ class _MyAppState extends State<MyWireguard> {
         wgQuickConfig: conf,
         providerBundleIdentifier: 'com.dlbm.wireguardvpn.WGExtension',
       );
+      googlePing();
       setState(() {
         connectedDate = DateTime.now();
       });
