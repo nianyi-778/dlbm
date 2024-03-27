@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:dlbm/views/toolbox/components/CardItem.dart';
 
@@ -39,16 +41,19 @@ class _ClassificationToolsState extends State<ClassificationTools> {
         description: '给你不一样的身份',
         icon: Icons.face_retouching_natural,
         bgColor: const Color.fromRGBO(215, 123, 21, 0.84)),
-    Item(
-        title: 'VPN',
-        link: '/vpn',
-        description: '翻墙术、想你所想',
-        icon: Icons.accessible_forward,
-        bgColor: Color.fromARGB(212, 63, 160, 107)),
   ];
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid) {
+      personList.add(Item(
+          title: 'VPN',
+          link: '/vpn',
+          description: '翻墙术、想你所想',
+          icon: Icons.accessible_forward,
+          bgColor: Color.fromARGB(212, 63, 160, 107)));
+    }
+
     return Container(
         padding: const EdgeInsets.only(left: 14, right: 14, bottom: 10, top: 6),
         child: Column(

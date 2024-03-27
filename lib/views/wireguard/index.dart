@@ -125,9 +125,7 @@ class _MyAppState extends State<MyWireguard> {
   void disconnect() async {
     try {
       await wireguard.stopVpn();
-      setState(() {
-        connectedDate = null;
-      });
+      connectedDate = null;
     } catch (e, str) {
       debugPrint('Failed to disconnect $e\n$str');
     }

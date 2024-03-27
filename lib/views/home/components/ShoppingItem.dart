@@ -28,7 +28,7 @@ class _HomePageShoppingState extends State<ShoppingItem> {
       {required this.title, required this.pict_url, required this.volume});
 
   void _launchURL() async {
-    final Uri launch = Uri.parse('taobao://');
+    final Uri launch = Uri.parse('weixin://');
     bool isInstall = await canLaunchUrl(launch);
     if (isInstall) {
       ToastCenter('正在跳转，请稍等...');
