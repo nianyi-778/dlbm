@@ -4,6 +4,7 @@ import 'package:dlbm/views/index.dart';
 import 'package:dlbm/views/about/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dlbm/views/wireguard/index.dart';
+import 'package:dlbm/views/webview/index.dart';
 
 class RouteConfiguration {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -34,6 +35,8 @@ class RouteConfiguration {
         );
       case '/vpn':
         return CupertinoPageRoute(builder: (_) => const MyWireguard());
+      case '/webview':
+        return CupertinoPageRoute(builder: (_) => const WebViewScreen());
       default:
         return CupertinoPageRoute(
           builder: (_) => Scaffold(
