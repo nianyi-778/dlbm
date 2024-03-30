@@ -50,7 +50,9 @@ class _ClassificationToolsState extends State<ClassificationTools> {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid) {
+    bool hasItemWithTitle = personList.any((item) => item.title == 'VPN');
+
+    if (Platform.isAndroid && hasItemWithTitle == false) {
       personList.add(Item(
           title: 'VPN',
           link: '/vpn',

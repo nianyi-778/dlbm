@@ -107,10 +107,10 @@ class _LoginPageState extends State<WechatLogin> {
                 TextButton(
                   onPressed: () {
                     // 在此处添加点击事件的处理逻辑
-                    print('TextButton 被点击了！');
+                    Navigator.pushNamed(context, '/help');
                   },
                   child: const Text(
-                    '帮助与设置',
+                    '帮助中心',
                     style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
                 )

@@ -5,6 +5,7 @@ import 'package:dlbm/views/about/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dlbm/views/wireguard/index.dart';
 import 'package:dlbm/views/webview/index.dart';
+import 'package:dlbm/views/help/index.dart';
 
 class RouteConfiguration {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -13,8 +14,8 @@ class RouteConfiguration {
         return CupertinoPageRoute(builder: (_) => const MainPage());
       case '/about':
         return CupertinoPageRoute(builder: (_) => const About());
-      // case '/pwd_login':
-      //   return CupertinoPageRoute(builder: (_) => const PwaLoginPage());
+      case '/help':
+        return CupertinoPageRoute(builder: (_) => Help());
       case '/login':
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
@@ -36,7 +37,7 @@ class RouteConfiguration {
       case '/vpn':
         return CupertinoPageRoute(builder: (_) => const MyWireguard());
       case '/webview':
-        return CupertinoPageRoute(builder: (_) => const WebViewScreen());
+        return CupertinoPageRoute(builder: (_) => WebViewScreen());
       default:
         return CupertinoPageRoute(
           builder: (_) => Scaffold(
