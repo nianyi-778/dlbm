@@ -1,7 +1,6 @@
 import 'package:dlbm/views/Login/index.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/views/index.dart';
-import 'package:dlbm/views/about/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dlbm/views/wireguard/index.dart';
 import 'package:dlbm/views/webview/index.dart';
@@ -13,7 +12,7 @@ class RouteConfiguration {
       case '/':
         return CupertinoPageRoute(builder: (_) => const MainPage());
       case '/about':
-        return CupertinoPageRoute(builder: (_) => const About());
+        return CupertinoPageRoute(builder: (_) =>  Help());
       case '/help':
         return CupertinoPageRoute(builder: (_) => Help());
       case '/login':

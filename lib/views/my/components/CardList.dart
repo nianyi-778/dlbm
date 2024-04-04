@@ -51,21 +51,21 @@ class CardItem extends StatelessWidget {
       Navigator.pushNamed(context, link!);
     } else {
       if (name.isNotEmpty) {
-        print(name);
+        ToastCenter('还未开发完毕，敬请期待');
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
         onTap: () {
           if (fn != null) {
             fn!();
           }
           callback(context);
         },
-        child: Container(
+        child: SizedBox(
           height: 54,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +73,7 @@ class CardItem extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    Container(
+                    SizedBox(
                       width: 30,
                       height: 30,
                       child: Icon(iconData),

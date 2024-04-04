@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dlbm/views/toolbox/components/CardItem.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -34,18 +35,12 @@ class ClassificationTools extends StatefulWidget {
 class _ClassificationToolsState extends State<ClassificationTools> {
   List<Item> personList = [
     Item(
-        title: '抖音去水印',
+        title: '短视频去水印',
         description: '无损高清原视频',
         link: "http://www.jiexiapi.top/",
         isWebView: true,
         icon: Icons.image,
         bgColor: const Color.fromRGBO(64, 149, 229, 0.84)),
-    Item(
-        title: 'AI换脸',
-        isWebView: true,
-        description: '给你不一样的身份',
-        icon: Icons.face_retouching_natural,
-        bgColor: const Color.fromRGBO(215, 123, 21, 0.84)),
   ];
 
   @override
@@ -68,20 +63,40 @@ class _ClassificationToolsState extends State<ClassificationTools> {
             Container(
               padding: const EdgeInsets.only(bottom: 6),
               width: MediaQuery.of(context).size.width,
-              child: const Text(
-                '实用工具',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Color.fromRGBO(16, 16, 16, 1),
-                    fontWeight: FontWeight.w600,
-                    height: 1.5, // 行高是fontSize的1.5倍
-                    shadows: [
-                      Shadow(
-                          offset: Offset(0, 2.0),
-                          blurRadius: 4.0,
-                          color: Color.fromARGB(255, 32, 32, 32))
-                    ]),
-                textAlign: TextAlign.left,
+              child:  Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const   Text(
+                    '实用工具',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromRGBO(16, 16, 16, 1),
+                        fontWeight: FontWeight.w600,
+                        height: 1.5, // 行高是fontSize的1.5倍
+                        shadows: [
+                          Shadow(
+                              offset: Offset(0, 2.0),
+                              blurRadius: 4.0,
+                              color: Color.fromARGB(255, 32, 32, 32))
+                        ]),
+                    textAlign: TextAlign.left,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      // 点击事件处理函数
+                      Navigator.pushNamed(context,'/webview');
+                    },
+                    child:const Text(
+                      '需求反馈',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  )
+                ],
               ),
             ),
             GridView.builder(
@@ -100,11 +115,7 @@ class _ClassificationToolsState extends State<ClassificationTools> {
                     onTap: () {
                       if (person.link != null && person.link!.isNotEmpty) {
                         if (person.isWebView == true) {
-                          Navigator.pushNamed(
-                            context,
-                            '/webview',
-                            arguments: WebUri(person.link as String),
-                          );
+                          openWebPage(Uri.parse(person.link as String));
                         } else {
                           Navigator.pushNamed(context, person.link as String);
                         }

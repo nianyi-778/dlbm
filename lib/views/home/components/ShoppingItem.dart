@@ -1,7 +1,6 @@
 import 'package:dlbm/components/NetworkImageWithPlaceholder.dart';
 import 'package:dlbm/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ShoppingItem extends StatefulWidget {
   final String title;
@@ -27,21 +26,13 @@ class _HomePageShoppingState extends State<ShoppingItem> {
   _HomePageShoppingState(
       {required this.title, required this.pict_url, required this.volume});
 
-  void _launchURL() async {
-    final Uri launch = Uri.parse('weixin://');
-    bool isInstall = await canLaunchUrl(launch);
-    if (isInstall) {
-      ToastCenter('正在跳转，请稍等...');
-      await launchUrl(launch);
-    } else {
-      ToastCenter('未安装,请先下载');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _launchURL,
+      onTap: ()=>{
+        launchURL("taobao://")
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
