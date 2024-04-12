@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">dlbm</string>
+    <!-- 其他现有字符串资源 -->
+    <string name="bottom_navigation_home">首页</string>
+    <string name="bottom_navigation_toolbox">百宝箱</string>
+    <string name="bottom_navigation_price">优惠券</string>
+    <string name="bottom_navigation_user">我的</string>
+</resources>
